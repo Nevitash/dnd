@@ -1,14 +1,22 @@
-<h2 mat-dialog-title>Add character to tracker</h2>
+<h2 class="dialog-title" mat-dialog-title>Add character to tracker</h2>
 <mat-dialog-content>
-  <form [formGroup]="this.form" (ngSubmit)="this.onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Character name</mat-label>
-      <input matInput placeholder="Nevitash en Ciel" [formControlName]="formService.KEY_NAME">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Initiative</mat-label>
-      <input matInput type="number" placeholder="10" [formControlName]="formService.KEY_INITIATIVE">
-    </mat-form-field>
-    <button type="submit" mat-raised-button [disabled]="!this.form.valid">Add creature</button>
-  </form>
+  <div class="dialog-content">
+    <form (ngSubmit)="this.onSubmit()" [formGroup]="this.form" class="dialog-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Character name</mat-label>
+          <input [formControlName]="formService.KEY_NAME" matInput placeholder="Nevitash en Ciel">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Initiative</mat-label>
+          <input [formControlName]="formService.KEY_INITIATIVE" matInput placeholder="10" type="number">
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button [disabled]="!this.form.valid" color="primary" mat-raised-button type="submit">
+          Add creature
+        </button>
+      </div>
+    </form>
+  </div>
 </mat-dialog-content>

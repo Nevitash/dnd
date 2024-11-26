@@ -1,0 +1,33 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Adds space between elements */
+}
+
+.dialog-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1vh;
+  gap: 16px; /* Adds space between form fields */
+}
+
+.dialog-form .button-row {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  margin-top: 16px; /* Adds space above the button */
+}
+
+.full-width {
+  flex: 1;
+  min-width: calc(50% - 16px); /* Ensures two fields are side by side */
+}
+
+@media (max-width: 600px) {
+  .dialog-form .form-row {
+    flex-direction: column;
+  }
+
+  .full-width {
+    min-width: 100%; /* Full width on small screens */
+  }
+}
