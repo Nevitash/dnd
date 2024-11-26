@@ -1,0 +1,9 @@
+<p>initiative-tracker works!</p>
+<mat-list>
+  @for (entry of this._entries; track entry().id){
+    <app-initiative-tracker-entry [tracked]="entry()" (click)="editEntry(entry)"></app-initiative-tracker-entry>
+  }
+</mat-list>
+<button mat-fab (click)="addCharacterClick()">
+  <mat-icon>add_circle</mat-icon>
+</button>
