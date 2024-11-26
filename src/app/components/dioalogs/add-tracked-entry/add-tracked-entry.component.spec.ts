@@ -1,14 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddTrackedEntryComponent } from './add-tracked-entry.component';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-  MatDialogContainer
-} from '@angular/material/dialog';
+import {AddTrackedEntryComponent} from './add-tracked-entry.component';
 
 describe('AddTrackedEntryComponent', () => {
   let component: AddTrackedEntryComponent;

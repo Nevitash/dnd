@@ -1,5 +1,3 @@
-import {computed, Signal, signal, WritableSignal} from '@angular/core';
-import {StatsUtil} from '../utils/stats-util';
 import {Stats} from './stats';
 
 export class Character {

@@ -1,8 +1,6 @@
-import {Component, } from '@angular/core';
+import {Component,} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AddTrackedEntryFormService} from '../../../services/forms/add-tracked-entry-form.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import {MatDialogRef} from '@angular/material/dialog';
 import {TrackedEntry} from '../../../models/tracked-entry';
 import {Character} from '../../../models/character';

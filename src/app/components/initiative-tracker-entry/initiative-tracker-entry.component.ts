@@ -1,4 +1,4 @@
-import {Component, Input, WritableSignal} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TrackedEntry} from '../../models/tracked-entry';
 
 @Component({

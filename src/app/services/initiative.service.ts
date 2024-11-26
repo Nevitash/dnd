@@ -1,4 +1,4 @@
-import {Injectable, signal, Signal, WritableSignal} from '@angular/core';
+import {Injectable, signal, WritableSignal} from '@angular/core';
 import {Character} from '../models/character';
 import {TrackedEntry} from '../models/tracked-entry';
 
