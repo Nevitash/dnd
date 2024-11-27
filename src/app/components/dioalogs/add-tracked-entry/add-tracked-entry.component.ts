@@ -10,7 +10,7 @@ import {Character} from '../../../models/character';
   standalone: false,
 
   templateUrl: './add-tracked-entry.component.html',
-  styleUrl: './add-tracked-entry.component.css'
+  styleUrl: './add-tracked-entry.component.scss'
 })
 export class AddTrackedEntryComponent {
   form!: FormGroup;

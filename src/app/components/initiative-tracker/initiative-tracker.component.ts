@@ -8,7 +8,7 @@ import {AddTrackedEntryComponent} from '../dioalogs/add-tracked-entry/add-tracke
   selector: 'app-initiative-tracker',
   standalone: false,
   templateUrl: './initiative-tracker.component.html',
-  styleUrl: './initiative-tracker.component.css'
+  styleUrl: './initiative-tracker.component.scss'
 })
 export class InitiativeTrackerComponent {
   dialog = inject(MatDialog);

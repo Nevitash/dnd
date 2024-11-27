@@ -6,7 +6,7 @@ import {TrackedEntry} from '../../models/tracked-entry';
   standalone: false,
 
   templateUrl: './initiative-tracker-entry.component.html',
-  styleUrl: './initiative-tracker-entry.component.css'
+  styleUrl: './initiative-tracker-entry.component.scss'
 })
 export class InitiativeTrackerEntryComponent {
   @Input() tracked!: TrackedEntry;

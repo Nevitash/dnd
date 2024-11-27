@@ -7,7 +7,7 @@ import {InitiativeTrackerComponent} from './components/initiative-tracker/initia
 import {
   InitiativeTrackerEntryComponent
 } from './components/initiative-tracker-entry/initiative-tracker-entry.component';
-import {MatList} from '@angular/material/list';
+import {MatList, MatListItem, MatListItemTitle} from '@angular/material/list';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {MatButton, MatFabButton} from '@angular/material/button';
 import {AddTrackedEntryComponent} from './components/dioalogs/add-tracked-entry/add-tracked-entry.component';
@@ -43,7 +43,9 @@ import {MatGridList, MatGridTile} from '@angular/material/grid-list';
     MatDialogContainer,
     MatButton,
     MatGridList,
-    MatGridTile
+    MatGridTile,
+    MatListItem,
+    MatListItemTitle
   ],
   providers: [],
   bootstrap: [AppComponent]
