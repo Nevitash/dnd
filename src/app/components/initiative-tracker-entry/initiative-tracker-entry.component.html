@@ -1,4 +1,18 @@
-<mat-list-item lines="2">
-  <span matListItemTitle>{{this.tracked.name}}</span>
-  <span>Initiative: {{this.tracked.stats.initiative}}</span>
-</mat-list-item>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header class="custom-header">
+      <div class="panel-header-content">
+        <mat-panel-title class="panel-title">
+          <mat-label>Initiative:</mat-label>
+          <span>{{ this.tracked.stats.initiative }}</span>
+          <span class="tracked-entry-name">{{ this.tracked.name }}</span>
+        </mat-panel-title>
+        <mat-panel-description class="panel-description">
+          <mat-label>Initiative:</mat-label>
+          <span>{{ this.tracked.stats.initiative }}</span>
+        </mat-panel-description>
+      </div>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
+</mat-accordion>

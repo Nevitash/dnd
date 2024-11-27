@@ -17,6 +17,12 @@ import {MatInput} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogContainer, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
 import {MatGridList, MatGridTile} from '@angular/material/grid-list';
+import {
+  MatAccordion, MatExpansionModule,
+  MatExpansionPanel,
+  MatExpansionPanelDescription,
+  MatExpansionPanelTitle
+} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -45,7 +51,12 @@ import {MatGridList, MatGridTile} from '@angular/material/grid-list';
     MatGridList,
     MatGridTile,
     MatListItem,
-    MatListItemTitle
+    MatListItemTitle,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,28 @@
+.tracked-entry-name{
+  margin-left: 1vw;
+}
+
+.custom-header {
+  min-height: 9vh; // Adjust the height value as needed
+  align-items: flex-start; // Align items to the top
+  margin-top: 1vh;
+}
+
+.panel-header-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%; // Ensure it takes up the full width
+}
+
+.panel-title {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.panel-description {
+  font-style: italic;
+  color: #757575;
+  margin-top: 8px;
+}
+
