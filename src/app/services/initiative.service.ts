@@ -23,5 +23,29 @@ export class InitiativeService {
 
   addTrackedEntry(trackedEntry: TrackedEntry) {
     this._entries.push(signal(trackedEntry));
+    this.sortEntries();
   }
+
+  sortEntries(): void {
+    this._entries.sort((a,b) => this.sortEntriesFunction(a,b))
+  }
+
+  sortEntriesFunction(a: WritableSignal<TrackedEntry>, b: WritableSignal<TrackedEntry>): number {
+    if(a().stats.initiative > b().stats.initiative) {
+      return -1;
+    }
+    if(a().stats.initiative < b().stats.initiative) {
+      return 1;
+    }
+    if(a().stats.initiative === b().stats.initiative && a().stats.initiativeMod > b().stats.initiativeMod) {
+      return -1
+    }
+    if(a().stats.initiative === b().stats.initiative && a().stats.initiativeMod < b().stats.initiativeMod) {
+      return 1;
+    }
+    return 0;
+  }
+
+
+
 }
