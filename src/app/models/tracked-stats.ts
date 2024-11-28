@@ -4,6 +4,7 @@ import {Stats} from './stats';
 export class TrackedStats {
   private _initiative: number = 0;
   private _initiativeMod: number = 0;
+  private _ac: number = 10;
 
   constructor(initiative: number = 0) {
     this._initiative = initiative;
@@ -32,5 +33,9 @@ export class TrackedStats {
 
   set initiativeMod(value: number) {
     this._initiativeMod = value;
+  }
+
+  set ac(value: number) {
+    this._ac = value;
   }
 }

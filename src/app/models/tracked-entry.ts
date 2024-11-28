@@ -2,6 +2,8 @@ import {Character} from './character';
 import {v7 as uuid} from 'uuid';
 import {Stats} from './stats';
 import {TrackedStats} from './tracked-stats';
+import {Attribute} from './dto/attribute';
+import {TrackedAttribute} from '../enums/tracked-attribute';
 
 export class TrackedEntry {
 
@@ -60,10 +62,19 @@ export class TrackedEntry {
     this._name = value;
   }
 
-  public static buildWithArgs({character, initiative, name}:
-                                { character?: Character; initiative: number; name: string }): TrackedEntry {
+  public static buildWithArgs({character, attributes, name}:
+                                { character?: Character; attributes: Array<Attribute>; name: string }): TrackedEntry {
     const trackedEntry: TrackedEntry = new TrackedEntry(name);
-    trackedEntry.stats.initiative = initiative;
+    for(const attribute of attributes) {
+      switch (attribute.name) {
+        case TrackedAttribute.INITIATIVE:
+          trackedEntry.stats.initiative = attribute.value;
+          trackedEntry.stats.initiativeMod = attribute.modifier ?? 0;
+          break;
+        case TrackedAttribute.AC:
+          trackedEntry.stats.ac = attribute.value;
+      }
+    }
     if (character) {
       trackedEntry.character = character;
     }

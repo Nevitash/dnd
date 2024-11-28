@@ -10,7 +10,7 @@ import {
 import {MatList, MatListItem, MatListItemTitle} from '@angular/material/list';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {MatButton, MatFabButton} from '@angular/material/button';
-import {AddTrackedEntryComponent} from './components/dioalogs/add-tracked-entry/add-tracked-entry.component';
+import {AddTrackedEntryComponent} from './components/dialogs/add-tracked-entry/add-tracked-entry.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
@@ -23,13 +23,15 @@ import {
   MatExpansionPanelDescription,
   MatExpansionPanelTitle
 } from '@angular/material/expansion';
+import { AttributeWithModifierComponent } from './components/inputs/attribute-with-modifier/attribute-with-modifier.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InitiativeTrackerComponent,
     InitiativeTrackerEntryComponent,
-    AddTrackedEntryComponent
+    AddTrackedEntryComponent,
+    AttributeWithModifierComponent
   ],
   imports: [
     BrowserModule,

@@ -18,11 +18,15 @@
 }
 
 .full-width {
+  flex: 1 1 auto;
+  min-width: 100%;
+}
+.side-by-side {
   flex: 1;
   min-width: calc(50% - 16px); /* Ensures two fields are side by side */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .dialog-form .form-row {
     flex-direction: column;
   }

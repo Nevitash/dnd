@@ -1,0 +1,16 @@
+.attribute-container{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 5px;
+}
+
+.attribute-value{
+  flex: 0 0 90px;
+}
+
+.attribute-modifier{
+  flex: 0 0 60px;
+}

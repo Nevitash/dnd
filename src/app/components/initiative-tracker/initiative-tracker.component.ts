@@ -2,7 +2,7 @@ import {Component, inject, WritableSignal} from '@angular/core';
 import {InitiativeService} from '../../services/initiative.service';
 import {TrackedEntry} from '../../models/tracked-entry';
 import {MatDialog} from '@angular/material/dialog';
-import {AddTrackedEntryComponent} from '../dioalogs/add-tracked-entry/add-tracked-entry.component';
+import {AddTrackedEntryComponent} from '../dialogs/add-tracked-entry/add-tracked-entry.component';
 
 @Component({
   selector: 'app-initiative-tracker',

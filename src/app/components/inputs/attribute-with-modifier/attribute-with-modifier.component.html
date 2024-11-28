@@ -1,0 +1,12 @@
+<div [formGroup]="_form" class="attribute-container">
+  <mat-form-field appearance="outline" class="attribute-value">
+    <mat-label>{{ this.attributeName }}</mat-label>
+    <input [formControlName]="KEY_STAT_VALUE" matInput placeholder="10" type="number">
+  </mat-form-field>
+  @if (this.modifier != undefined){
+    <mat-form-field appearance="outline" class="attribute-modifier">
+      <mat-label>Mod</mat-label>
+      <input [formControlName]="KEY_STAT_MODIFIER" matInput placeholder="0" type="number">
+    </mat-form-field>
+  }
+</div>

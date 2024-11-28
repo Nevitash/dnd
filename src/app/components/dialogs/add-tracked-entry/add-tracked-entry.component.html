@@ -1,0 +1,27 @@
+<h2 class="dialog-title" mat-dialog-title>Add character to tracker</h2>
+<mat-dialog-content>
+    <div class="dialog-content">
+        <form (ngSubmit)="this.onSubmit()" [formGroup]="this.form" class="dialog-form">
+            <div class="form-row">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Character name</mat-label>
+                    <input [formControlName]="formService.KEY_NAME" matInput placeholder="Nevitash en Ciel">
+                </mat-form-field>
+                @for (attribute of this.attributeArray.controls; track trackFunctionAttributes(attribute)) {
+                    <app-attribute-with-modifier
+                      [attributeName]="attribute.value!.name"
+                      [value]="attribute.value!.value"
+                      [modifier]="attribute.value?.modifier"
+                      [formControl]="attribute"
+                      class="side-by-side"
+                    />
+                }
+            </div>
+            <div class="button-row">
+                <button [disabled]="!this.form.valid" color="primary" mat-raised-button type="submit">
+                    Add creature
+                </button>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
