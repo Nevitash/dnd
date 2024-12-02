@@ -24,5 +24,13 @@
   font-style: italic;
   color: #757575;
   margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+:host-context(.highlight-entry) .mat-expansion-panel,
+:host-context(.highlight-entry) .mat-expansion-panel-header {
+  background-color: var(--mat-sys-inverse-on-surface) !important;
+}
+
 

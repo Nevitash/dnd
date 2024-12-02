@@ -1,16 +1,25 @@
-.initiative-tracker-container{
+.initiative-tracker-container {
   display: flex;
-  flex:1 1 auto;
+  flex: 1 1 auto;
   flex-flow: row wrap;
   gap: 5px;
 }
-.initiative-controls{
+
+.initiative-controls {
   flex: 1 0 50px;
   display: flex;
   flex-flow: column wrap;
   gap: 10px;
 }
 
-.initiative-order{
+.initiative-order {
   flex: 5 1 80%;
+  max-width: 80%;
 }
+
+.initiative-order mat-list > mat-list-item:first-child mat-expansion-panel {
+  border: 2px solid var(--mat-sys-color-secondary);
+  padding: 5px; /* Optional: add padding to make the border more visible */
+}
+
+

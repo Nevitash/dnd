@@ -72,7 +72,7 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
 
   protected readonly Phase = Phase;
 
-  nestTurn() {
+  nextTurn() {
     this.initiativeService.nextTurn()
   }
 }
