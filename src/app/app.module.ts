@@ -24,6 +24,9 @@ import {
   MatExpansionPanelTitle
 } from '@angular/material/expansion';
 import { AttributeWithModifierComponent } from './components/inputs/attribute-with-modifier/attribute-with-modifier.component';
+import { ImageUploadComponent } from './components/inputs/image-upload/image-upload.component';
+import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
+import {NgOptimizedImage} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { AttributeWithModifierComponent } from './components/inputs/attribute-wi
     InitiativeTrackerComponent,
     InitiativeTrackerEntryComponent,
     AddTrackedEntryComponent,
-    AttributeWithModifierComponent
+    AttributeWithModifierComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,11 @@ import { AttributeWithModifierComponent } from './components/inputs/attribute-wi
     MatExpansionPanel,
     MatExpansionPanelTitle,
     MatExpansionPanelDescription,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCard,
+    MatCardImage,
+    MatCardContent,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]

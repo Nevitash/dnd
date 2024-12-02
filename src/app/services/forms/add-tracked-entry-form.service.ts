@@ -11,7 +11,7 @@ export class AddTrackedEntryFormService {
   public readonly KEY_NAME = "name";
   public readonly KEY_STATS = "stats";
   public readonly KEY_CHARACTER = "character";
-  public readonly SUB_KEY_ATTRIBUTE_NAME = "name";
+  public readonly KEY_IMAGE = "image";
   private readonly _attributes: Array<string> = [
     TrackedAttribute.INITIATIVE.valueOf()
   ];
@@ -24,6 +24,7 @@ export class AddTrackedEntryFormService {
     this._form = formBuilder.group({
       [this.KEY_NAME]: new FormControl<string>("", [Validators.required]),
       [this.KEY_CHARACTER]: new FormControl<Character | undefined>(undefined, []),
+      [this.KEY_IMAGE]: new FormControl<File | undefined>(undefined, []),
       [this.KEY_STATS]: this._attributeArray
     });
 

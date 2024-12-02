@@ -44,16 +44,6 @@ export class AddTrackedEntryComponent {
     this.dialogRef.close(TrackedEntry.buildWithArgs({name: name, attributes: attributeArray, character: character}));
   }
 
-  trackByFn(index: number, item: any): any {
-    return item.key;
-  }
-
-  attributeArrayTrackFunction(attributeGroup: FormGroup): string | undefined {
-    return (attributeGroup.contains(this.formService.SUB_KEY_ATTRIBUTE_NAME)
-      ? (attributeGroup.get(this.formService.SUB_KEY_ATTRIBUTE_NAME) as FormControl<string>).value
-      : undefined)
-  }
-
   trackFunctionAttributes(attribute: FormControl<Attribute | null>) {
     return attribute.value?.name ?? undefined;
   }

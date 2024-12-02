@@ -1,0 +1,20 @@
+<div [formGroup]="this._form">
+  <input type="file"
+         accept="image/jpeg, image/png, image/gif, image/bmp, image/webp"
+         style="display: none"
+         [formControlName]="this.KEY_IMAGE"
+         (change)="uploadImage($event)"
+         #imageUpload/>
+  <div (click)="imageUpload.click()">
+    @if(this._form.get(this.KEY_IMAGE)?.value != null){
+      <mat-card appearance="raised">
+        <mat-card-content>
+          <img mat-card-image [src]="this.imageUrl" alt="Uploaded image"/>
+        </mat-card-content>
+
+      </mat-card>
+    } @else {
+      <p>Upload or drag & drop an image</p>
+    }
+  </div>
+</div>
