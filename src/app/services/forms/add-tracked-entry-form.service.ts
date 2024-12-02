@@ -28,7 +28,7 @@ export class AddTrackedEntryFormService {
     });
 
     for (const attributeId in Object.keys(this._attributes)) {
-      this._attributeArray.push(this.createStatFormControls(this._attributes[attributeId], 12, 0), {emitEvent: false});
+      this._attributeArray.push(this.createStatFormControls(this._attributes[attributeId], 10, 0), {emitEvent: false});
     }
     this._attributeArray.push(this.createStatFormControls(TrackedAttribute.AC.valueOf(), 10), {emitEvent: false});
   }

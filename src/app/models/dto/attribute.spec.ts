@@ -2,6 +2,6 @@ import { Attribute } from './attribute';
 
 describe('Attribute', () => {
   it('should create an instance', () => {
-    expect(new Attribute()).toBeTruthy();
+    expect(new Attribute("TestAttr", 10)).toBeTruthy();
   });
 });

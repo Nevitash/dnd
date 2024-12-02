@@ -1,9 +1,22 @@
 <p>initiative-tracker works!</p>
 <mat-list>
-  @for (entry of this._entries; track entry().id){
-    <app-initiative-tracker-entry [tracked]="entry()" (click)="editEntry(entry)"></app-initiative-tracker-entry>
+  @if (this.phase === Phase.PREVIEW) {
+    @for (entry of this._entries; track entry().id){
+      <app-initiative-tracker-entry [tracked]="entry()" (click)="editEntry(entry)"></app-initiative-tracker-entry>
+    }
+  } @else {
+    @for (entry of this._roundEntries; track entry().id){
+      <app-initiative-tracker-entry [tracked]="entry()" (click)="editEntry(entry)"></app-initiative-tracker-entry>
+    }
   }
+
 </mat-list>
 <button mat-fab (click)="addCharacterClick()">
   <mat-icon>add_circle</mat-icon>
+</button>
+<button mat-fab (click)="handleNewRound()">
+  <mat-icon>start</mat-icon>
+</button>
+<button mat-fab (click)="nestTurn()">
+  <mat-icon>next_plan</mat-icon>
 </button>
