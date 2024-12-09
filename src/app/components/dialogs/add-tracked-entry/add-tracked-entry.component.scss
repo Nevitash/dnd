@@ -1,37 +1,86 @@
-.dialog-content {
+.dialog {
+  background-color: yellow;
   display: flex;
-  flex-direction: column;
-  gap: 16px; /* Adds space between elements */
+  flex-direction: column; /* Column direction for main containers */
+  @media (max-width: 600px) {
+    flex-direction: row;
+  }
 }
 
-.dialog-form .form-row {
+.top-container {
   display: flex;
+  flex-direction: row; /* Row direction for children */
+  flex: 4; /* Ensure it takes necessary space */
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    max-width: 75%;
+  }
+}
+
+.stats-container {
+  padding-top: 8px;
+  flex: 0 1 60%;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 1vh;
-  gap: 16px; /* Adds space between form fields */
+  max-width: 60%;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 
-.dialog-form .button-row {
+.image-container {
+  padding-top: 8px;
+  flex: 0 1 40%;
+  background-color: green;
+  max-width: 40%;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
+}
+
+.button-container {
+  flex: 1;
+  background-color: black;
   display: flex;
-  justify-content: flex-end; /* Aligns the button to the right */
-  margin-top: 16px; /* Adds space above the button */
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    max-width: 30%;
+    height: 100%;
+    max-height: 100%;
+    align-items: flex-start;
+    padding-top: 5px;
+  }
 }
 
 .full-width {
-  flex: 1 1 auto;
-  min-width: 100%;
+  flex: 1;
+  flex-basis: 100%;
 }
+
 .side-by-side {
   flex: 1;
-  min-width: calc(50% - 16px); /* Ensures two fields are side by side */
+  max-width: calc(50% - 10px);
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 
-@media (max-width: 400px) {
-  .dialog-form .form-row {
-    flex-direction: column;
-  }
+// If the last element is the .button-container, align it to the top
+.button-container:last-child {
+  align-self: flex-start; /* Ensures it aligns at the top */
+}
 
-  .full-width {
-    min-width: 100%; /* Full width on small screens */
+.dialog-form {
+  @media (max-width: 600px) {
+    display: flex;
+    max-width: 100%;
   }
 }

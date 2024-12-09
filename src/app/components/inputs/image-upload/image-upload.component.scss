@@ -1,0 +1,15 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto; /* Enables scrollbars when content overflows */
+  width: 100%; /* Set width as needed */
+  height: 400px; /* Set height as needed */
+  border: 1px solid #ddd;
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+

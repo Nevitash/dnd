@@ -7,11 +7,10 @@
          #imageUpload/>
   <div (click)="imageUpload.click()">
     @if(this._form.get(this.KEY_IMAGE)?.value != null){
-      <mat-card appearance="raised">
+      <mat-card appearance="raised" class="card-container">
         <mat-card-content>
-          <img mat-card-image [src]="this.imageUrl" alt="Uploaded image"/>
+          <img mat-card-image [src]="this.imageUrl" alt="Uploaded image" class="card-image"/>
         </mat-card-content>
-
       </mat-card>
     } @else {
       <p>Upload or drag & drop an image</p>

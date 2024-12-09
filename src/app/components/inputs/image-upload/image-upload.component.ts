@@ -13,7 +13,7 @@ import {
   standalone: false,
 
   templateUrl: './image-upload.component.html',
-  styleUrl: './image-upload.component.css',
+  styleUrl: './image-upload.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -35,7 +35,7 @@ export class ImageUploadComponent implements ControlValueAccessor {
   };
 
   constructor() {
-    this._image = new FormControl<File | null>(null, [Validators.required]);
+    this._image = new FormControl<File | null>(null, []);
     this._form = this._formBuilder.group({
       [this.KEY_IMAGE]: this._image
     })
