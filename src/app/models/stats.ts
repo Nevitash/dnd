@@ -1,10 +1,13 @@
 import {computed, signal, Signal, WritableSignal} from '@angular/core';
-import {StatsUtil} from '../utils/stats-util';
 
 export class Stats {
   get initiativeModifier(): Signal<number> {
     return this._initiativeModifier;
   }
+
+  private _maxHp: WritableSignal<number | undefined> = signal(undefined);
+  private _currentHp: WritableSignal<number | undefined> = signal(undefined);
+
   private _strength: WritableSignal<number> = signal(10);
   private _dexterity: WritableSignal<number> = signal(10);
   private _constitution: WritableSignal<number> = signal(10);
@@ -12,14 +15,13 @@ export class Stats {
   private _intelligence: WritableSignal<number> = signal(10);
   private _charisma: WritableSignal<number> = signal(10);
 
-  private _strengthModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.strength)());
-  private _dexterityModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.dexterity)());
-  private _constitutionModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.constitution)());
-  private _wisdomModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.wisdom)());
-  private _intelligenceModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.intelligence)());
-  private _charismaModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.charisma)());
-
-  private _initiativeModifier: Signal<number> = computed(() => StatsUtil.computeModifier(this.dexterity)());
+  private _strengthModifier: Signal<number> = computed(() => Stats.computeModifier(this.strength)());
+  private _dexterityModifier: Signal<number> = computed(() => Stats.computeModifier(this.dexterity)());
+  private _constitutionModifier: Signal<number> = computed(() => Stats.computeModifier(this.constitution)());
+  private _wisdomModifier: Signal<number> = computed(() => Stats.computeModifier(this.wisdom)());
+  private _intelligenceModifier: Signal<number> = computed(() => Stats.computeModifier(this.intelligence)());
+  private _charismaModifier: Signal<number> = computed(() => Stats.computeModifier(this.charisma)());
+  private _initiativeModifier: Signal<number> = computed(() => Stats.computeModifier(this.dexterity)());
 
   get strength(): Signal<number> {
     return this._strength;
@@ -93,5 +95,27 @@ export class Stats {
     return this._charismaModifier;
   }
 
+  get maxHp(): WritableSignal<number | undefined> {
+    return this._maxHp;
+  }
 
+  set maxHp(value: WritableSignal<number | undefined>) {
+    this._maxHp = value;
+  }
+
+  get currentHp(): WritableSignal<number | undefined> {
+    return this._currentHp;
+  }
+
+  set currentHp(value: WritableSignal<number | undefined>) {
+    this._currentHp = value;
+  }
+
+  public static computeModifier(value: Signal<number>): Signal<number> {
+    return computed(() => {
+      return (value())
+        ? Math.floor((value() - 10) / 2 + 0.5) - Math.floor((10 - value()) / 2 + 0.5)
+        : 0;
+    });
+  }
 }

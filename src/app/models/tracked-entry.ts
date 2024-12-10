@@ -13,10 +13,10 @@ export class TrackedEntry {
   private _name: string;
   private _image?: File;
 
-  public constructor(name: string, character?: Character, stats?: TrackedStats) {
+  public constructor(name: string, character?: Character, stats?: TrackedStats | null) {
     this._name = name;
     this._character = character;
-    this._trackedStats = stats ?? new TrackedStats();
+    this._trackedStats = stats ?? new TrackedStats(10, 1);
   }
 
   public static buildWithCharacter(character: Character): TrackedEntry | undefined {
@@ -83,6 +83,11 @@ export class TrackedEntry {
           break;
         case TrackedAttribute.AC:
           trackedEntry.stats.ac = attribute.value;
+          break
+        case TrackedAttribute.HP:
+          trackedEntry.stats.maxHp = attribute.value
+          trackedEntry.stats.currentHp = attribute.value;
+          break;
       }
     }
     trackedEntry.character = character ?? undefined;
