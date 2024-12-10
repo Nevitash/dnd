@@ -12,8 +12,13 @@ export class AddTrackedEntryFormService {
   public readonly KEY_STATS = "stats";
   public readonly KEY_CHARACTER = "character";
   public readonly KEY_IMAGE = "image";
-  private readonly _attributes: Array<string> = [
+  private readonly _attributesWithMod: Array<string> = [
     TrackedAttribute.INITIATIVE.valueOf()
+  ];
+  private readonly _attributesWithoutMod: Array<string> = [
+    TrackedAttribute.HP.valueOf(),
+    TrackedAttribute.AC.valueOf(),
+
   ];
 
   private _form!: FormGroup;
@@ -31,10 +36,13 @@ export class AddTrackedEntryFormService {
       [this.KEY_IMAGE]: new FormControl<File | undefined>(undefined, []),
       [this.KEY_STATS]: statsArray
     });
-    for (const attributeId in Object.keys(this._attributes)) {
-      statsArray.push(this.createStatFormControls(this._attributes[attributeId], 10, 0), {emitEvent: false});
+    for (const attributeId in Object.keys(this._attributesWithMod)) {
+      statsArray.push(this.createStatFormControls(this._attributesWithMod[attributeId], 10, 0), {emitEvent: false});
     }
-    statsArray.push(this.createStatFormControls(TrackedAttribute.AC.valueOf(), 10), {emitEvent: false});
+    for (const attributeId in Object.keys(this._attributesWithoutMod)) {
+      statsArray.push(this.createStatFormControls(this._attributesWithoutMod[attributeId], 10), {emitEvent: false});
+    }
+
     return form;
   }
 
@@ -55,7 +63,7 @@ export class AddTrackedEntryFormService {
     this._attributeArray = value;
   }
 
-  private assignForm(form: FormGroup){
+  private assignForm(form: FormGroup) {
     this._form = form;
     this._attributeArray = form.get(this.KEY_STATS) as FormArray;
   }

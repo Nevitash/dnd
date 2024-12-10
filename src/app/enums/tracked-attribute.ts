@@ -1,4 +1,5 @@
 export enum TrackedAttribute {
   INITIATIVE ="Initiative",
-  AC = "AC"
+  AC = "AC",
+  HP = "HP",
 }
