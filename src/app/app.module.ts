@@ -27,6 +27,7 @@ import { AttributeWithModifierComponent } from './components/inputs/attribute-wi
 import { ImageUploadComponent } from './components/inputs/image-upload/image-upload.component';
 import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {NgOptimizedImage} from '@angular/common';
+import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,9 @@ import {NgOptimizedImage} from '@angular/common';
     MatCard,
     MatCardImage,
     MatCardContent,
-    NgOptimizedImage
+    NgOptimizedImage,
+    DragScrollComponent,
+    DragScrollItemDirective
   ],
   providers: [],
   bootstrap: [AppComponent]

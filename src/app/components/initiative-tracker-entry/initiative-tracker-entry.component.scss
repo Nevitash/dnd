@@ -33,4 +33,29 @@
   background-color: var(--mat-sys-inverse-on-surface) !important;
 }
 
+.entry-image {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease;
+  scale: 1;
+}
+
+.image-container{
+  max-height: 50vh;
+  display: block;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.zoomed {
+  scale: 1.5;
+  cursor: zoom-out;
+  transform-origin: 0 0;
+
+  @media (max-width: 600px) {
+    scale: 3;
+  }
+}
+
 

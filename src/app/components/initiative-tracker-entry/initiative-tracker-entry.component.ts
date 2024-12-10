@@ -1,4 +1,11 @@
-import {Component, Input, ChangeDetectionStrategy, signal, OnInit, OnDestroy, input} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import {TrackedEntry} from '../../models/tracked-entry';
 import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -10,6 +17,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
   styleUrl: './initiative-tracker-entry.component.scss'
 })
 export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
+  protected _zoomedIn: boolean = false;
 
   protected _imageUrl?: string | ArrayBuffer | null;
   @Input() tracked!: TrackedEntry;
@@ -35,5 +43,9 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
 
   set imageUrl(value: string | ArrayBuffer | null) {
     this._imageUrl = value;
+  }
+
+  toggleZoom() {
+    this._zoomedIn = !this._zoomedIn;
   }
 }

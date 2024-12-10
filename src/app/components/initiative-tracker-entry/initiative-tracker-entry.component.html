@@ -13,8 +13,19 @@
         </mat-panel-description>
       </div>
     </mat-expansion-panel-header>
-    @if(this.imageUrl != undefined){
-      <img mat-card-image [src]="this.imageUrl"/>
+    @if (this.imageUrl != undefined) {
+      <div class="image-container" #imgContainer>
+        <drag-scroll>
+          <img
+            #img
+            [attr.drag-scroll-item]="this._zoomedIn ? '' : null"
+            [ngClass]="{'zoomed': this._zoomedIn}"
+            class="entry-image"
+            mat-card-image
+            [src]="this.imageUrl"
+            (click)="toggleZoom()"/>
+        </drag-scroll>
+      </div>
     }
   </mat-expansion-panel>
 </mat-accordion>
