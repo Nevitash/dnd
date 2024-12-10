@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Form, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Form, FormArray, FormBuilder, FormControl, FormGroup, FormRecord, Validators} from '@angular/forms';
 import {Character} from '../../models/character';
 import {TrackedAttribute} from '../../enums/tracked-attribute';
 import {Attribute} from '../../models/dto/attribute';
@@ -16,22 +16,26 @@ export class AddTrackedEntryFormService {
     TrackedAttribute.INITIATIVE.valueOf()
   ];
 
-  private readonly _form: FormGroup;
-  private _attributeArray: FormArray;
+  private _form!: FormGroup;
+  private _attributeArray!: FormArray;
 
   constructor(private formBuilder: FormBuilder) {
-    this._attributeArray = formBuilder.array([]);
-    this._form = formBuilder.group({
+    this.assignForm(this.buildForm())
+  }
+
+  private buildForm(): FormGroup {
+    let statsArray: FormArray = this.formBuilder.array([]);
+    let form: FormGroup = this.formBuilder.group({
       [this.KEY_NAME]: new FormControl<string>("", [Validators.required]),
       [this.KEY_CHARACTER]: new FormControl<Character | undefined>(undefined, []),
       [this.KEY_IMAGE]: new FormControl<File | undefined>(undefined, []),
-      [this.KEY_STATS]: this._attributeArray
+      [this.KEY_STATS]: statsArray
     });
-
     for (const attributeId in Object.keys(this._attributes)) {
-      this._attributeArray.push(this.createStatFormControls(this._attributes[attributeId], 10, 0), {emitEvent: false});
+      statsArray.push(this.createStatFormControls(this._attributes[attributeId], 10, 0), {emitEvent: false});
     }
-    this._attributeArray.push(this.createStatFormControls(TrackedAttribute.AC.valueOf(), 10), {emitEvent: false});
+    statsArray.push(this.createStatFormControls(TrackedAttribute.AC.valueOf(), 10), {emitEvent: false});
+    return form;
   }
 
   private createStatFormControls(attributeName: string, value: number, modifier?: number): FormControl<Attribute | null> {
@@ -51,7 +55,14 @@ export class AddTrackedEntryFormService {
     this._attributeArray = value;
   }
 
-  getImageFormControl(): FormControl<File> {
-    return this.form.get(this.KEY_IMAGE) as FormControl<File>;
+  private assignForm(form: FormGroup){
+    this._form = form;
+    this._attributeArray = form.get(this.KEY_STATS) as FormArray;
+  }
+
+  resetForm() {
+    let form = this.buildForm();
+    this._form.reset(form);
+    this.assignForm(form);
   }
 }

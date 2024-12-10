@@ -1,4 +1,4 @@
-import {Component,} from '@angular/core';
+import {ChangeDetectorRef, Component, inject,} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {AddTrackedEntryFormService} from '../../../services/forms/add-tracked-entry-form.service';
 import {MatDialogRef} from '@angular/material/dialog';
@@ -43,6 +43,7 @@ export class AddTrackedEntryComponent {
     let character: Character = (this.form.controls[this.formService.KEY_CHARACTER] as FormControl<Character>).value ?? undefined;
     let image: File = (this.form.controls[this.formService.KEY_IMAGE] as FormControl<File>).value ?? undefined;
     this.dialogRef.close(TrackedEntry.buildWithArgs({name: name, attributes: attributeArray, character: character, image: image}));
+    this.formService.resetForm();
   }
 
   trackFunctionAttributes(attribute: FormControl<Attribute | null>) {
