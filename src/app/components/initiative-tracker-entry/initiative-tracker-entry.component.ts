@@ -2,12 +2,9 @@ import {
   Component,
   Input,
   OnInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef
+  OnDestroy
 } from '@angular/core';
 import {TrackedEntry} from '../../models/tracked-entry';
-import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-initiative-tracker-entry',
