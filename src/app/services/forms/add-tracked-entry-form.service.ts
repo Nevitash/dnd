@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Form, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Character} from '../../models/character';
 import {TrackedAttribute} from '../../enums/tracked-attribute';
 import {Attribute} from '../../models/dto/attribute';
@@ -49,5 +49,9 @@ export class AddTrackedEntryFormService {
 
   set attributeArray(value: FormArray<FormControl<Attribute | null>>) {
     this._attributeArray = value;
+  }
+
+  getImageFormControl(): FormControl<File> {
+    return this.form.get(this.KEY_IMAGE) as FormControl<File>;
   }
 }

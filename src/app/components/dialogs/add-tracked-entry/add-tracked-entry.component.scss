@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: row; /* Row direction for children */
   flex: 4; /* Ensure it takes necessary space */
+  align-items: flex-start;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -37,6 +38,7 @@
   flex: 0 1 40%;
   background-color: green;
   max-width: 40%;
+  cursor: pointer;
 
   @media (max-width: 600px) {
     max-width: 100%;
@@ -62,11 +64,13 @@
 .full-width {
   flex: 1;
   flex-basis: 100%;
+  max-height: fit-content;
 }
 
 .side-by-side {
   flex: 1;
   max-width: calc(50% - 10px);
+  max-height: fit-content;
 
   @media (max-width: 600px) {
     max-width: 100%;

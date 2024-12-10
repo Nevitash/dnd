@@ -11,6 +11,7 @@ export class TrackedEntry {
   private _trackedStats: TrackedStats;
   private readonly _id: string = uuid();
   private _name: string;
+  private _image?: File;
 
   public constructor(name: string, character?: Character, stats?: TrackedStats) {
     this._name = name;
@@ -34,6 +35,15 @@ export class TrackedEntry {
     return new TrackedEntry(name ?? 'Unknown', undefined, trackedStats);
   }
 
+
+  get image(): File | undefined {
+    return this._image;
+  }
+
+  set image(value: File | undefined) {
+    this._image = value;
+  }
+
   get id(): string {
     return this._id;
   }
@@ -46,7 +56,7 @@ export class TrackedEntry {
     this._trackedStats = value;
   }
 
-  set character(value: Character) {
+  set character(value: Character | undefined) {
     this._character = value;
   }
 
@@ -62,8 +72,8 @@ export class TrackedEntry {
     this._name = value;
   }
 
-  public static buildWithArgs({character, attributes, name}:
-                                { character?: Character; attributes: Array<Attribute>; name: string }): TrackedEntry {
+  public static buildWithArgs({character, attributes, name, image}:
+                                { character?: Character; attributes: Array<Attribute>; name: string; image?: File }): TrackedEntry {
     const trackedEntry: TrackedEntry = new TrackedEntry(name);
     for(const attribute of attributes) {
       switch (attribute.name) {
@@ -75,9 +85,8 @@ export class TrackedEntry {
           trackedEntry.stats.ac = attribute.value;
       }
     }
-    if (character) {
-      trackedEntry.character = character;
-    }
+    trackedEntry.character = character ?? undefined;
+    trackedEntry.image = image ?? undefined;
     return trackedEntry;
   }
 

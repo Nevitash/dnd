@@ -73,8 +73,11 @@ export class ImageUploadComponent implements ControlValueAccessor {
   uploadImage(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
+      this.onChange();
       const file = input.files[0];
       const reader = new FileReader();
+      this.onChange(file);
+      this.onTouched();
       reader.onload = () => {
         this.imageUrl = reader.result;
       };

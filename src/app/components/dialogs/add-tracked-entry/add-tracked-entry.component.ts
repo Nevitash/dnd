@@ -41,7 +41,8 @@ export class AddTrackedEntryComponent {
       }
     );
     let character: Character = (this.form.controls[this.formService.KEY_CHARACTER] as FormControl<Character>).value ?? undefined;
-    this.dialogRef.close(TrackedEntry.buildWithArgs({name: name, attributes: attributeArray, character: character}));
+    let image: File = (this.form.controls[this.formService.KEY_IMAGE] as FormControl<File>).value ?? undefined;
+    this.dialogRef.close(TrackedEntry.buildWithArgs({name: name, attributes: attributeArray, character: character, image: image}));
   }
 
   trackFunctionAttributes(attribute: FormControl<Attribute | null>) {

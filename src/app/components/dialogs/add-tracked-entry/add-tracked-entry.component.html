@@ -7,7 +7,7 @@
           <div class="stats-container">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Character name</mat-label>
-              <input [formControlName]="formService.KEY_NAME" matInput placeholder="Nevitash en Ciel">
+              <input [formControlName]="formService.KEY_NAME" matInput placeholder="Nevitash en Ciel" class="name-input">
             </mat-form-field>
             @for (attribute of this.attributeArray.controls; track trackFunctionAttributes(attribute)) {
               <app-attribute-with-modifier
