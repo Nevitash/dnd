@@ -83,9 +83,19 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
   }
 
   setHp(value: number) {
-    if(!this.tracked.stats.maxHp){
+    if (!this.tracked.stats.maxHp) {
       return;
     }
     this.tracked.stats.currentHp = Math.min(value, this.tracked.stats.maxHp);
+  }
+
+  isDown(): boolean {
+    if(!this.tracked || !this.tracked.stats){
+      return false;
+    }
+    if(this.tracked.stats.currentHp === undefined){
+      return false;
+    }
+    return this.tracked.stats.currentHp <= 0;
   }
 }

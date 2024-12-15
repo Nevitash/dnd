@@ -1,25 +1,24 @@
 <mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header class="custom-header">
+  <mat-expansion-panel hideToggle [ngClass]="{'critical':isDown()}">
+    <mat-expansion-panel-header class="custom-header" [ngClass]="{'critical':isDown()}">
       <div class="panel-header-content">
         <mat-panel-title class="panel-title">
           <div class="panel-title-container">
             <span class="tracked-entry-name">{{ this.tracked.name }}</span>
             <div class="hp-slider-container">
               <mat-label>HP:</mat-label>
-              @if(this.damageCalc){
+              @if (this.damageCalc) {
                 <ng-container [ngTemplateOutlet]="damageCalcControls"></ng-container>
               } @else {
                 <ng-container [ngTemplateOutlet]="hpControls"></ng-container>
               }
               <mat-slider
-                min="-1" [max]="this.tracked.stats.maxHp"
+                [max]="this.tracked.stats.maxHp"
                 [showTickMarks]="true" step="1"
                 (click)="$event.stopPropagation()"
                 class="hp-slider">
                 <input matSliderThumb [(ngModel)]="this.tracked.stats.currentHp">
               </mat-slider>
-
             </div>
           </div>
         </mat-panel-title>

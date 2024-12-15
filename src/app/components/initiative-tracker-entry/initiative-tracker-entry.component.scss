@@ -30,7 +30,10 @@
 
 :host-context(.highlight-entry) .mat-expansion-panel,
 :host-context(.highlight-entry) .mat-expansion-panel-header {
-  background-color: var(--mat-sys-inverse-on-surface) !important;
+  background-color: var(--mat-sys-inverse-on-surface);
+}
+.critical {
+  background-color: var(--mat-sys-error-container) !important;
 }
 
 .entry-image {
