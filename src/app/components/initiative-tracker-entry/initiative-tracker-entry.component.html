@@ -1,11 +1,33 @@
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header class="custom-header">
       <div class="panel-header-content">
         <mat-panel-title class="panel-title">
-          <mat-label>Initiative:</mat-label>
-          <span>{{ this.tracked.stats.initiative }}</span>
-          <span class="tracked-entry-name">{{ this.tracked.name }}</span>
+          <div class="panel-title-container">
+            <span class="tracked-entry-name">{{ this.tracked.name }}</span>
+            <div class="hp-slider-container">
+              <mat-label>HP:</mat-label>
+              <mat-form-field appearance="outline" class="hp-input-field">
+                <input #hpInput class="hp-input" type="text" matInput [ngModel]="this.tracked.stats.currentHp"
+                       (keydown.enter)="onHpChange(hpInput.value)">
+              </mat-form-field>
+              <button mat-fab (click)="doDamage(hpInput.value)" class="damage-button">
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+              <button mat-fab (click)="doHeal(hpInput.value)" class="heal-button">
+                <mat-icon>health_and_safety</mat-icon>
+              </button>
+
+              <mat-slider
+                min="-1" [max]="this.tracked.stats.maxHp"
+                [showTickMarks]="true" step="1"
+                (click)="$event.stopPropagation()"
+                class="hp-slider">
+                <input matSliderThumb [(ngModel)]="this.tracked.stats.currentHp">
+              </mat-slider>
+
+            </div>
+          </div>
         </mat-panel-title>
         <mat-panel-description class="panel-description">
           <mat-label>Initiative:</mat-label>
@@ -14,16 +36,17 @@
       </div>
     </mat-expansion-panel-header>
     @if (this.imageUrl != undefined) {
-      <div class="image-container" #imgContainer>
+      <div class="image-container">
         <drag-scroll>
           <img
-            #img
             drag-scroll-item
             [ngClass]="{'zoomed': this._zoomedIn}"
             class="entry-image"
             mat-card-image
             [src]="this.imageUrl"
-            (click)="toggleZoom()"/>
+            (click)="toggleZoom()"
+            alt="uploaded_image"
+          />
         </drag-scroll>
       </div>
     }

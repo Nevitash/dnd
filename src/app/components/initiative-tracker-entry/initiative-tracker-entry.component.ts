@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   OnInit,
-  OnDestroy
+  OnDestroy, ViewChild, ElementRef
 } from '@angular/core';
 import {TrackedEntry} from '../../models/tracked-entry';
 
@@ -14,6 +14,7 @@ import {TrackedEntry} from '../../models/tracked-entry';
   styleUrl: './initiative-tracker-entry.component.scss'
 })
 export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
+  @ViewChild('hpInput') hpInput!: ElementRef<HTMLInputElement>;
   protected _zoomedIn: boolean = false;
 
   protected _imageUrl?: string | ArrayBuffer | null;
@@ -44,5 +45,39 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
 
   toggleZoom() {
     this._zoomedIn = !this._zoomedIn;
+  }
+
+  onHpChange(value: string) {
+    this.applyHpChange(value);
+  }
+
+  applyHpChange(valueString: string): void {
+    let value = parseInt(valueString);
+
+    if (this.tracked.stats.currentHp === undefined || this.tracked.stats.maxHp === undefined) {
+      this.hpInput.nativeElement.value = "undefined";
+      return;
+    }
+
+    if (valueString.startsWith("+") && this.tracked.stats.currentHp < 0) {
+      this.tracked.stats.currentHp = 0;
+    }
+
+    if (valueString.startsWith("+") || valueString.startsWith("-")) {
+      value = this.tracked.stats.currentHp + value;
+    }
+
+    this.tracked.stats.currentHp = Math.min(value, this.tracked.stats.maxHp);
+    this.hpInput.nativeElement.value = this.tracked.stats.currentHp.toString();
+  }
+
+  doDamage(value: string) {
+    value = value.replace(/[+-]/g, "");  // Using a regular expression with global flag
+    this.onHpChange(`-${value}`);
+  }
+
+  doHeal(value: string) {
+    value = value.replace(/[+-]/g, "");  // Using a regular expression with global flag
+    this.onHpChange(`+${value}`);
   }
 }

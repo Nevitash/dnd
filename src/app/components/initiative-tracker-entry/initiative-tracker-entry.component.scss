@@ -1,4 +1,4 @@
-.tracked-entry-name{
+.tracked-entry-name {
   margin-left: 1vw;
 }
 
@@ -41,7 +41,7 @@
   scale: 1;
 }
 
-.image-container{
+.image-container {
   max-height: 50vh;
   display: block;
   overflow: scroll;
@@ -72,4 +72,50 @@
   min-height: fit-content;
 }
 
+.panel-title-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: space-evenly;
+  flex: 1 1 100%;
+  gap: 10px;
+}
+
+.hp-slider-container {
+  flex: 1 1 30%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  @media (max-width: 900px) {
+    flex: 1 0 100%;
+  }
+}
+
+.hp-slider {
+  flex: 1 0 200px;
+}
+
+.hp-input {
+  max-width: 70px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-bottom-align {
+  display: none;
+}
+
+.hp-input-field {
+  @media (max-width: 900px) {
+    max-width: 70px;
+  }
+}
+
+.damage-button {
+  background-color: red;
+}
+
+.heal-button {
+  background-color: green;
+}
 

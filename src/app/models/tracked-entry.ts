@@ -16,7 +16,11 @@ export class TrackedEntry {
   public constructor(name: string, character?: Character, stats?: TrackedStats | null) {
     this._name = name;
     this._character = character;
-    this._trackedStats = stats ?? new TrackedStats(10, 1);
+    if(!stats) {
+      stats = new TrackedStats();
+      stats.initiative = 10;
+    }
+    this._trackedStats = stats;
   }
 
   public static buildWithCharacter(character: Character): TrackedEntry | undefined {

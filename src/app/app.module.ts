@@ -28,6 +28,7 @@ import { ImageUploadComponent } from './components/inputs/image-upload/image-upl
 import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {NgOptimizedImage} from '@angular/common';
 import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
+import {MatSlider, MatSliderThumb} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,9 @@ import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
     MatCardContent,
     NgOptimizedImage,
     DragScrollComponent,
-    DragScrollItemDirective
+    DragScrollItemDirective,
+    MatSlider,
+    MatSliderThumb
   ],
   providers: [],
   bootstrap: [AppComponent]

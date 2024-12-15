@@ -1,18 +1,17 @@
 import {Character} from './character';
 import {Stats} from './stats';
 import {RollUtil} from '../utils/rollUtil';
+import {signal, WritableSignal} from '@angular/core';
 
 export class TrackedStats {
   private _initiative: number = 0;
   private _initiativeMod: number = 0;
   private _ac: number = 10;
-  private _maxHp!: number;
-  private _currentHp!: number;
+  private _maxHp: WritableSignal<number | undefined> = signal(undefined);
+  private _currentHp: WritableSignal<number | undefined> = signal(undefined);
 
-  constructor(initiative: number, hp: number) {
-    this._initiative = initiative;
-    this._maxHp = hp;
-    this._currentHp = hp;
+  constructor() {
+
   }
 
   public static buildWithCharacter(character: Character): TrackedStats | null {
@@ -21,8 +20,14 @@ export class TrackedStats {
 
   public static buildWithStats(stats: Stats): TrackedStats {
     const initiative: number = RollUtil.rollD20() + stats.initiativeModifier();
-    const maxHp = stats.maxHp() ?? 1;
-    return new TrackedStats(initiative, maxHp);
+    const maxHp: WritableSignal<number | undefined> = stats.maxHp() ? stats.maxHp : signal(undefined);
+    const currentHp: WritableSignal<number | undefined> = stats.currentHp() ? stats.currentHp : signal(undefined);
+
+    let trackedStats = new TrackedStats();
+    trackedStats.initiative = initiative;
+    trackedStats.maxHpSignal = maxHp;
+    trackedStats.currentHpSignal = currentHp;
+    return trackedStats;
   }
 
   get initiative(): number {
@@ -49,19 +54,41 @@ export class TrackedStats {
     return this._ac;
   }
 
-  get maxHp(): number {
-    return this._maxHp;
+  get maxHp(): number | undefined {
+    return this._maxHp ? this._maxHp() : undefined;
   }
 
   set maxHp(value: number) {
-    this._maxHp = value;
+    if(!this._maxHp){
+      this._maxHp = signal(1);
+    }
+    this._maxHp.set(value);
   }
 
-  get currentHp(): number {
-    return this._currentHp;
+  get currentHp(): number | undefined {
+    return this._currentHp ? this._currentHp() : undefined;
   }
 
   set currentHp(value: number) {
+    if(!this._currentHp){
+      this._currentHp = signal(1);
+    }
+    this._currentHp.set(value);
+  }
+
+  get maxHpSignal(): WritableSignal<number | undefined> {
+    return this._maxHp;
+  }
+
+  set maxHpSignal(value: WritableSignal<number | undefined>) {
+    this._maxHp = value;
+  }
+
+  get currentHpSignal(): WritableSignal<number | undefined> {
+    return this._currentHp;
+  }
+
+  set currentHpSignal(value: WritableSignal<number | undefined>) {
     this._currentHp = value;
   }
 }
