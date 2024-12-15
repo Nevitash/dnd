@@ -29,6 +29,8 @@ import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {NgOptimizedImage} from '@angular/common';
 import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
 import {MatSlider, MatSliderThumb} from '@angular/material/slider';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
+import {MatTooltip} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import {MatSlider, MatSliderThumb} from '@angular/material/slider';
     DragScrollComponent,
     DragScrollItemDirective,
     MatSlider,
-    MatSliderThumb
+    MatSliderThumb,
+    MatSlideToggle,
+    MatTooltip
   ],
   providers: [],
   bootstrap: [AppComponent]

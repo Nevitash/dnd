@@ -7,17 +7,11 @@
             <span class="tracked-entry-name">{{ this.tracked.name }}</span>
             <div class="hp-slider-container">
               <mat-label>HP:</mat-label>
-              <mat-form-field appearance="outline" class="hp-input-field">
-                <input #hpInput class="hp-input" type="text" matInput [ngModel]="this.tracked.stats.currentHp"
-                       (keydown.enter)="onHpChange(hpInput.value)">
-              </mat-form-field>
-              <button mat-fab (click)="doDamage(hpInput.value)" class="damage-button">
-                <mat-icon>remove_circle</mat-icon>
-              </button>
-              <button mat-fab (click)="doHeal(hpInput.value)" class="heal-button">
-                <mat-icon>health_and_safety</mat-icon>
-              </button>
-
+              @if(this.damageCalc){
+                <ng-container [ngTemplateOutlet]="damageCalcControls"></ng-container>
+              } @else {
+                <ng-container [ngTemplateOutlet]="hpControls"></ng-container>
+              }
               <mat-slider
                 min="-1" [max]="this.tracked.stats.maxHp"
                 [showTickMarks]="true" step="1"
@@ -52,3 +46,22 @@
     }
   </mat-expansion-panel>
 </mat-accordion>
+
+<ng-template #damageCalcControls>
+  <mat-form-field appearance="outline" class="hp-input-field">
+    <input #hpInput class="hp-input" type="text" matInput [ngModel]="this.tracked.stats.currentHp"
+           (keydown.enter)="onHpChange(hpInput.value)">
+  </mat-form-field>
+  <button mat-fab (click)="doDamage(hpInput.value)" class="damage-button">
+    <mat-icon>remove_circle</mat-icon>
+  </button>
+  <button mat-fab (click)="doHeal(hpInput.value)" class="heal-button">
+    <mat-icon>health_and_safety</mat-icon>
+  </button>
+</ng-template>
+<ng-template #hpControls>
+  <mat-form-field appearance="outline" class="hp-input-field">
+    <input #hpInput class="hp-input" type="number" matInput [ngModel]="this.tracked.stats.currentHp"
+           (keydown.enter)="setHp(hpInput.valueAsNumber)" (focusout)="setHp(hpInput.valueAsNumber)">
+  </mat-form-field>
+</ng-template>

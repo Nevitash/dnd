@@ -19,6 +19,7 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
 
   protected _imageUrl?: string | ArrayBuffer | null;
   @Input() tracked!: TrackedEntry;
+  @Input() damageCalc!: boolean;
 
   ngOnInit(): void {
     if (this.tracked.image) {
@@ -67,7 +68,7 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
       value = this.tracked.stats.currentHp + value;
     }
 
-    this.tracked.stats.currentHp = Math.min(value, this.tracked.stats.maxHp);
+    this.setHp(value);
     this.hpInput.nativeElement.value = this.tracked.stats.currentHp.toString();
   }
 
@@ -79,5 +80,12 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
   doHeal(value: string) {
     value = value.replace(/[+-]/g, "");  // Using a regular expression with global flag
     this.onHpChange(`+${value}`);
+  }
+
+  setHp(value: number) {
+    if(!this.tracked.stats.maxHp){
+      return;
+    }
+    this.tracked.stats.currentHp = Math.min(value, this.tracked.stats.maxHp);
   }
 }

@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit, WritableSignal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {InitiativeService} from '../../services/initiative.service';
 import {TrackedEntry} from '../../models/tracked-entry';
 import {MatDialog} from '@angular/material/dialog';
@@ -71,6 +71,16 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Phase = Phase;
+  private _damageCalc: WritableSignal<boolean> = signal(false);
+
+
+  get damageCalc(): boolean {
+    return this._damageCalc();
+  }
+
+  set damageCalc(value: boolean) {
+    this._damageCalc.set(value);
+  }
 
   nextTurn() {
     this.initiativeService.nextTurn()

@@ -6,6 +6,7 @@
           <app-initiative-tracker-entry
             [ngClass]="{'highlight-entry': index === 0}"
             [tracked]="entry()"
+            [damageCalc]="this.damageCalc"
             (click)="editEntry(entry)"></app-initiative-tracker-entry>
         }
       } @else {
@@ -13,6 +14,7 @@
           <app-initiative-tracker-entry
             [ngClass]="{'highlight-entry': index === 0}"
             [tracked]="entry()"
+            [damageCalc]="this.damageCalc"
             (click)="editEntry(entry)"></app-initiative-tracker-entry>
         }
       }
@@ -28,5 +30,7 @@
     <button mat-fab (click)="nextTurn()">
       <mat-icon>next_plan</mat-icon>
     </button>
+    <mat-label matTooltip="Damage calulcation adds damage or heals and disables setting the hp manually">DMG CALC</mat-label>
+    <mat-slide-toggle [(ngModel)]="damageCalc"></mat-slide-toggle>
   </div>
 </div>
