@@ -32,6 +32,7 @@ export class AddTrackedEntryComponent {
       return;
     }
     let name: string = (this.form.controls[this.formService.KEY_NAME] as FormControl<string>).value ?? undefined;
+    let multiple: number = (this.form.controls[this.formService.KEY_MULTIPLIER] as FormControl<number>).value ?? 1;
     let attributeArray = this.attributeArray.controls.map(
       (attributeControl: FormControl<Attribute | null>) => {
         let name: string = attributeControl.value!.name;
@@ -42,7 +43,18 @@ export class AddTrackedEntryComponent {
     );
     let character: Character = (this.form.controls[this.formService.KEY_CHARACTER] as FormControl<Character>).value ?? undefined;
     let image: File = (this.form.controls[this.formService.KEY_IMAGE] as FormControl<File>).value ?? undefined;
-    this.dialogRef.close(TrackedEntry.buildWithArgs({name: name, attributes: attributeArray, character: character, image: image}));
+    let trackedEntries: TrackedEntry[] = [];
+    for (let i = 0; i < multiple; i++) {
+      trackedEntries.push(
+        TrackedEntry.buildWithArgs({
+          name: name,
+          attributes: attributeArray,
+          character: character,
+          image: image
+        })
+      )
+    }
+    this.dialogRef.close(trackedEntries);
     this.formService.resetForm();
   }
 

@@ -64,8 +64,10 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
     let dialogRef = this.dialog.open(
       AddTrackedEntryComponent,
     );
-    dialogRef.afterClosed().subscribe((result: TrackedEntry) => {
-      this.addCharacter(result)
+    dialogRef.afterClosed().subscribe((result: TrackedEntry[]) => {
+      for (let entry of result) {
+        this.addCharacter(entry);
+      }
     });
   }
 

@@ -43,10 +43,10 @@ export class InitiativeService {
   addTrackedEntry(trackedEntry: TrackedEntry) {
     const number: number = this.determineNextNumber(this._entries, trackedEntry.name);
     trackedEntry.name = `${trackedEntry.name} ${number}`;
-    let newEntry = signal(trackedEntry);
-    this._entries.push(newEntry);
+    let newEntrySignal = signal(trackedEntry);
+    this._entries.push(newEntrySignal);
     if (this.phase === Phase.PREVIEW) {
-      this._roundEntries.push(newEntry)
+      this._roundEntries.push(newEntrySignal)
     }
     this.sortEntries();
   }

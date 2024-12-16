@@ -46,7 +46,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: baseline;
 
   @media (max-width: 950px) {
     max-width: 65px;
@@ -83,4 +83,8 @@
     display: flex;
     max-width: 100%;
   }
+}
+
+.multiple-input {
+  max-width: 70px;
 }

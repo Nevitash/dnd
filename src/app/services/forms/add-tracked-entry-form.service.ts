@@ -12,6 +12,7 @@ export class AddTrackedEntryFormService {
   public readonly KEY_STATS = "stats";
   public readonly KEY_CHARACTER = "character";
   public readonly KEY_IMAGE = "image";
+  public readonly KEY_MULTIPLIER = "multiplier";
   private readonly _attributesWithMod: Array<string> = [
     TrackedAttribute.INITIATIVE.valueOf()
   ];
@@ -34,7 +35,8 @@ export class AddTrackedEntryFormService {
       [this.KEY_NAME]: new FormControl<string>("", [Validators.required]),
       [this.KEY_CHARACTER]: new FormControl<Character | undefined>(undefined, []),
       [this.KEY_IMAGE]: new FormControl<File | undefined>(undefined, []),
-      [this.KEY_STATS]: statsArray
+      [this.KEY_STATS]: statsArray,
+      [this.KEY_MULTIPLIER]: new FormControl<number>(1, [Validators.required])
     });
     for (const attributeId in Object.keys(this._attributesWithMod)) {
       statsArray.push(this.createStatFormControls(this._attributesWithMod[attributeId], 10, 0), {emitEvent: false});
