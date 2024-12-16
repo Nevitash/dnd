@@ -66,6 +66,9 @@ export class InitiativeService {
   }
 
   startNewRound() {
+    if(this._entries.length <= 1){
+      return;
+    }
     this.phase = Phase.IN_ROUND;
     this.sortEntries();
     this.roundEntries = [...this.entries];
@@ -74,6 +77,9 @@ export class InitiativeService {
 
   nextTurn(): WritableSignal<TrackedEntry> | null {
     //Start the round if we were in preview. Happens if we forgot to call startNewRound
+    if(this._entries.length <= 1){
+      return null;
+    }
     if (this.phase === Phase.PREVIEW) {
       this.startNewRound()
     }

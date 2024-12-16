@@ -45,9 +45,12 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
   }
 
   handleNewRound() {
-    this.initiativeService.startNewRound();
     this._roundEntries = this.initiativeService.roundEntries;
     //TODO trigger a animation to indicate new round
+  }
+
+  startNewRound() {
+    this.initiativeService.startNewRound();
   }
 
   ngOnInit(): void {
