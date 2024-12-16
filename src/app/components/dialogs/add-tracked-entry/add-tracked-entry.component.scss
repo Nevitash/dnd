@@ -11,6 +11,8 @@
   flex-direction: row; /* Row direction for children */
   flex: 4; /* Ensure it takes necessary space */
   align-items: flex-start;
+  margin-top: 8px;
+  gap: 10px;
 
   @media (max-width: 950px) {
     flex-direction: column;
@@ -19,7 +21,6 @@
 }
 
 .stats-container {
-  padding-top: 8px;
   flex: 0 1 60%;
   display: flex;
   flex-direction: row;

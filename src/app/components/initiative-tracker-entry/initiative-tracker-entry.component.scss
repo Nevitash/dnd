@@ -123,3 +123,11 @@
   background-color: green;
 }
 
+.remove-entry-button {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: var(--mat-sys-error);
+}
+

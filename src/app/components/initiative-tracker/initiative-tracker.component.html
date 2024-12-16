@@ -7,7 +7,9 @@
             [ngClass]="{'highlight-entry': index === 0}"
             [tracked]="entry()"
             [damageCalc]="this.initiativeService.damageCalc"
-            (click)="editEntry(entry)"></app-initiative-tracker-entry>
+            (click)="editEntry(entry)"
+            (removeEntryEvent)="removeEntry($event)"
+          ></app-initiative-tracker-entry>
         }
       } @else {
         @for (entry of this._roundEntries; let index = $index; track entry().id) {

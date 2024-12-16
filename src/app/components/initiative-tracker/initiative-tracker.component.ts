@@ -87,4 +87,8 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
   nextTurn() {
     this.initiativeService.nextTurn()
   }
+
+  removeEntry(trackedEntry: TrackedEntry) {
+    this.initiativeService.removeEntryFromAll(trackedEntry);
+  }
 }

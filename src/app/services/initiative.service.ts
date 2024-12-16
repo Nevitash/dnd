@@ -129,4 +129,15 @@ export class InitiativeService {
   set newRoundEvent$(value: Observable<void>) {
     this._newRoundEvent$ = value;
   }
+
+  removeEntryFromAll(trackedEntry: TrackedEntry) {
+    let index = this._entries.findIndex(entry => entry().name === trackedEntry.name);
+    if (index !== -1) {
+      this._entries.splice(index, 1);
+    }
+    index = this._roundEntries.findIndex(entry => entry().name === trackedEntry.name);
+    if (index !== -1) {
+      this._roundEntries.splice(index, 1);
+    }
+  }
 }

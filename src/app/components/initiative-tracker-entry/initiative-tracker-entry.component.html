@@ -1,6 +1,8 @@
 <mat-accordion>
+
   <mat-expansion-panel hideToggle [ngClass]="{'critical':isDown()}">
     <mat-expansion-panel-header class="custom-header" [ngClass]="{'critical':isDown()}">
+      <mat-icon class="remove-entry-button" (click)="removeEntry($event);">highlight_remove</mat-icon>
       <div class="panel-header-content">
         <mat-panel-title class="panel-title">
           <div class="panel-title-container">

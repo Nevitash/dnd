@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   OnInit,
-  OnDestroy, ViewChild, ElementRef
+  OnDestroy, ViewChild, ElementRef, Output, EventEmitter
 } from '@angular/core';
 import {TrackedEntry} from '../../models/tracked-entry';
 
@@ -20,6 +20,7 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
   protected _imageUrl?: string | ArrayBuffer | null;
   @Input() tracked!: TrackedEntry;
   @Input() damageCalc!: boolean;
+  @Output() removeEntryEvent: EventEmitter<TrackedEntry> = new EventEmitter();
 
   ngOnInit(): void {
     if (this.tracked.image) {
@@ -97,5 +98,10 @@ export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {
       return false;
     }
     return this.tracked.stats.currentHp <= 0;
+  }
+
+  removeEntry($event: MouseEvent) {
+    $event.stopPropagation();
+    this.removeEntryEvent.emit(this.tracked);
   }
 }
