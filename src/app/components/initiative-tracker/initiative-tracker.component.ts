@@ -23,6 +23,16 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
 
   private _newTurnSubscription?: Subscription;
 
+  protected readonly Phase = Phase;
+
+  get damageCalc(): boolean {
+    return this.initiativeService.damageCalc;
+  }
+
+  set damageCalc(value: boolean) {
+    this.initiativeService.damageCalc = value;
+  }
+
   constructor() {
     this._entries = this.initiativeService.entries
     this._roundEntries = this.initiativeService.roundEntries;
@@ -70,17 +80,7 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
     return this.initiativeService.phase;
   }
 
-  protected readonly Phase = Phase;
-  private _damageCalc: WritableSignal<boolean> = signal(false);
 
-
-  get damageCalc(): boolean {
-    return this._damageCalc();
-  }
-
-  set damageCalc(value: boolean) {
-    this._damageCalc.set(value);
-  }
 
   nextTurn() {
     this.initiativeService.nextTurn()

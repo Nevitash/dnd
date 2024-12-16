@@ -14,6 +14,7 @@ export class InitiativeService {
   private _entries: Array<WritableSignal<TrackedEntry>> = [];
   private _roundEntries: Array<WritableSignal<TrackedEntry>> = [];
   private _phase: Phase = Phase.PREVIEW;
+  private _damageCalc:WritableSignal<boolean> = signal(false);
 
   _newRoundSubject = new Subject<void>();
   private _newRoundEvent$ = this._newRoundSubject.asObservable();
@@ -22,6 +23,15 @@ export class InitiativeService {
 
   clearTracker(): void {
     this._entries = [];
+  }
+
+
+  get damageCalc(): boolean {
+    return this._damageCalc();
+  }
+
+  set damageCalc(value: boolean) {
+    this._damageCalc.set(value);
   }
 
   addCharacter(character: Character): void {
