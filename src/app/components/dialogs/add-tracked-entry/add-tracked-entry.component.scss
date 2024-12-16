@@ -36,10 +36,27 @@
   flex: 0 1 40%;
   max-width: 40%;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #3f51b5; /* Material Design color for primary */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(63, 81, 181, 0.1); /* Light primary color on hover */
+  }
 
   @media (max-width: 950px) {
     max-width: 100%;
   }
+
+  input[type="file"] {
+    display: none;
+  }
+
+
 }
 
 .button-container {
