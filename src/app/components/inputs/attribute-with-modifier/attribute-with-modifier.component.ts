@@ -33,6 +33,7 @@ export class AttributeWithModifierComponent implements ControlValueAccessor {
   @Input() attributeName!: string;
   @Input() value: number = 10;
   @Input() modifier?: number;
+  @Input() rollCode?: string;
 
   protected _form: FormGroup;
   protected _attribute: Attribute;
