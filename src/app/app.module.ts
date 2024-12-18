@@ -31,6 +31,8 @@ import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
 import {MatSlider, MatSliderThumb} from '@angular/material/slider';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
 import {MatTooltip} from '@angular/material/tooltip';
+import {NgIconsModule} from '@ng-icons/core';
+import {gamePerspectiveDiceSixFacesSix} from '@ng-icons/game-icons'
 
 @NgModule({
   declarations: [
@@ -76,7 +78,8 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatSlider,
     MatSliderThumb,
     MatSlideToggle,
-    MatTooltip
+    MatTooltip,
+    NgIconsModule.withIcons({gamePerspectiveDiceSixFacesSix})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,10 +10,11 @@ import {
   Validators
 } from '@angular/forms';
 import {Attribute} from '../../../models/dto/attribute';
+import {RollUtil} from '../../../utils/rollUtil';
 
 @Component({
-  selector: 'app-attribute-with-modifier',
   templateUrl: './attribute-with-modifier.component.html',
+  selector: 'app-attribute-with-modifier',
   styleUrls: ['./attribute-with-modifier.component.scss'],
   standalone: false,
   providers: [
@@ -47,7 +48,7 @@ export class AttributeWithModifierComponent implements ControlValueAccessor {
   constructor(private formBuilder: FormBuilder) {
     this._form = this.formBuilder.group({
       [this.KEY_STAT_NAME]: new FormControl<string>(this.attributeName, [Validators.required]),
-      [this.KEY_STAT_VALUE]: new FormControl<number>(this.value, [Validators.required, Validators.min(1)]),
+      [this.KEY_STAT_VALUE]: new FormControl<number>(this.value, [Validators.required]),
       [this.KEY_STAT_MODIFIER]: new FormControl<number>(this.modifier ?? 0, [])
     });
 
@@ -81,5 +82,12 @@ export class AttributeWithModifierComponent implements ControlValueAccessor {
 
   validate(control: AbstractControl): ValidationErrors | null {
     return this._form.valid ? null : { invalidForm: { valid: false, message: "Attribute form is invalid" } };
+  }
+
+  roll($event: MouseEvent) {
+    $event.stopPropagation();
+    const operator = this.modifier! >= 0 ? "+" : "";
+    const result = RollUtil.rollWithDiceCode(`${this.rollCode}${operator}${this.modifier}`);
+    this._form.get(this.KEY_STAT_VALUE)!.setValue(result);
   }
 }

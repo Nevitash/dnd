@@ -11,13 +11,24 @@
                      class="name-input">
             </mat-form-field>
             @for (attribute of this.attributeArray.controls; track trackFunctionAttributes(attribute)) {
-              <app-attribute-with-modifier
-                [attributeName]="attribute.value!.name"
-                [value]="attribute.value!.value"
-                [modifier]="attribute.value?.modifier"
-                [formControl]="attribute"
-                class="side-by-side"
-              />
+              @if(this.isRollable(attribute)){
+                <app-attribute-with-modifier
+                  [attributeName]="attribute.value!.name"
+                  [value]="attribute.value!.value"
+                  [modifier]="attribute.value?.modifier"
+                  [formControl]="attribute"
+                  rollCode="1d20"
+                  class="side-by-side"
+                />
+              } @else {
+                <app-attribute-with-modifier
+                  [attributeName]="attribute.value!.name"
+                  [value]="attribute.value!.value"
+                  [modifier]="attribute.value?.modifier"
+                  [formControl]="attribute"
+                  class="side-by-side"
+                />
+              }
             }
           </div>
           <div class="image-container">

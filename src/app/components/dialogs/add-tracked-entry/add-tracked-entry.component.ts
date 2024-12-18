@@ -5,6 +5,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {TrackedEntry} from '../../../models/tracked-entry';
 import {Character} from '../../../models/character';
 import {Attribute} from '../../../models/dto/attribute';
+import {TrackedAttribute} from '../../../enums/tracked-attribute';
 
 @Component({
   selector: 'app-add-tracked-entry',
@@ -16,6 +17,9 @@ import {Attribute} from '../../../models/dto/attribute';
 export class AddTrackedEntryComponent {
   form!: FormGroup;
   attributeArray!: FormArray<FormControl<Attribute | null>>;
+  protected _rollableAttributes: string[] = [
+    TrackedAttribute.INITIATIVE.valueOf()
+  ]
 
   constructor(
     protected formService: AddTrackedEntryFormService,
@@ -60,5 +64,12 @@ export class AddTrackedEntryComponent {
 
   trackFunctionAttributes(attribute: FormControl<Attribute | null>) {
     return attribute.value?.name ?? undefined;
+  }
+
+  isRollable(attribute: FormControl<Attribute | null>): boolean {
+    if(!attribute.value){
+      return false;
+    }
+    return (this._rollableAttributes.includes(attribute.value!.name));
   }
 }

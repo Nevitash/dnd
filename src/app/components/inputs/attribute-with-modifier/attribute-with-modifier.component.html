@@ -1,12 +1,16 @@
 <div [formGroup]="_form" class="attribute-container">
   <mat-form-field appearance="outline" class="attribute-value">
     <mat-label>{{ this.attributeName.substring(0,3).toUpperCase() }}</mat-label>
-    <input [formControlName]="KEY_STAT_VALUE" matInput placeholder="10" type="number">
+    <input [formControlName]="KEY_STAT_VALUE" matInput placeholder="10" type="text">
+    @if (this.rollCode) {
+      <ng-icon name="gamePerspectiveDiceSixFacesSix" class="roll-icon" (click)="this.roll($event)" size="25"></ng-icon>
+    }
   </mat-form-field>
   @if (this.modifier != undefined){
     <mat-form-field appearance="outline" class="attribute-modifier">
       <mat-label>MOD</mat-label>
       <input [formControlName]="KEY_STAT_MODIFIER" matInput placeholder="0" type="number">
+
     </mat-form-field>
   }
 </div>

@@ -16,3 +16,9 @@
   flex: 0 0 60px;
   padding: 0 0 0 0;
 }
+
+.roll-icon{
+  position: absolute;
+  top: calc(50% - ((var(--ng-icon__size, 1em))/2));
+  cursor: pointer;
+}
