@@ -3,9 +3,10 @@
 }
 
 .custom-header {
-  min-height: 9vh; // Adjust the height value as needed
+  min-height: fit-content; // Adjust the height value as needed
   align-items: flex-start; // Align items to the top
   margin-top: 1vh;
+  height: fit-content;
 }
 
 .panel-header-content {
@@ -24,7 +25,6 @@
   font-style: italic;
   color: #757575;
   margin-top: 8px;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -71,9 +71,7 @@
   min-height: fit-content;
 }
 
-.custom-header {
-  min-height: fit-content;
-}
+
 
 .panel-title-container {
   display: flex;
@@ -129,5 +127,11 @@
   top: 0;
   right: 10px;
   color: var(--mat-sys-error);
+}
+
+@-moz-document url-prefix() {
+  :host ::ng-deep .mat-expansion-panel-header {
+    height: fit-content;
+  }
 }
 
