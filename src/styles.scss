@@ -1,5 +1,7 @@
 @use "@angular/material" as mat;
 
+@use "assets/themes/dark";
+
 $theme: mat.define-theme(
     (
       color: (
@@ -14,9 +16,16 @@ html{
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   @include mat.all-component-themes($theme);
   background-color:  mat.get-theme-color($theme, background); // For dark themes
+
+  --mat-label-text-color: var(--mat-checkbox-label-text-color);
+}
+
+mat-label {
+  color: var(--mat-label-text-color);
 }
 
 
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($theme);
+
 
