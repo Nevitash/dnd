@@ -1,0 +1,10 @@
+runtime: nodejs20 # Or a suitable Node.js runtime
+
+handlers:
+  - url: /(.*\.(gif|png|jpg|js|css|scss|ico))$
+    static_files: dist/dnd/browser/\1  # Correct path
+    upload: dist/dnd/browser/(.*\.(gif|png|jpg|js|css|scss|ico))$
+
+  - url: /.*
+    static_files: dist/dnd/browser/index.html  # Correct path
+    upload: dist/dnd/browser/index.html

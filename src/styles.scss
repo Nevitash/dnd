@@ -1,12 +1,22 @@
 @use "@angular/material" as mat;
 
+$theme: mat.define-theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: mat.$violet-palette,
+        tertiary: mat.$violet-palette
+      ),
+    )
+);
 
-html {
-  color-scheme: light dark;
-  @include mat.theme((
-    color: mat.$violet-palette,
-    typography: Roboto,
-    density: 0
-  ));
+html{
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  @include mat.all-component-themes($theme);
+  background-color:  mat.get-theme-color($theme, background); // For dark themes
 }
+
+
+@include mat.core();
+@include mat.color-variants-backwards-compatibility($theme);
 
