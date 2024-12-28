@@ -1,8 +1,8 @@
 <div class="initiative-tracker-container">
   <div class="initiative-order">
     <mat-list>
-      @if (this.phase === Phase.PREVIEW) {
-        @for (entry of this._entries; let index = $index; track entry().id) {
+      @if (this.phase === Phase.IN_ROUND) {
+        @for (entry of this._roundEntries; let index = $index; track entry().id) {
           <app-initiative-tracker-entry
             [ngClass]="{'highlight-entry': index === 0}"
             [tracked]="entry()"
@@ -11,15 +11,22 @@
             (removeEntryEvent)="removeEntry($event)"
           ></app-initiative-tracker-entry>
         }
-      } @else {
-        @for (entry of this._roundEntries; let index = $index; track entry().id) {
+        <div class="label-divider-container">
+          <mat-label class="centered-label">Next Round</mat-label>
+          <mat-divider class="round-divider"></mat-divider>
+        </div>
+      }
+      <div [ngClass]="{'next-round-preview-container': this.phase !== Phase.PREVIEW}">
+        @for (entry of this._entries; let index = $index; track entry().id) {
           <app-initiative-tracker-entry
-            [ngClass]="{'highlight-entry': index === 0}"
+            [ngClass]="{'greyed-out': this.phase === Phase.IN_ROUND}"
             [tracked]="entry()"
             [damageCalc]="this.initiativeService.damageCalc"
             (click)="editEntry(entry)"></app-initiative-tracker-entry>
+
         }
-      }
+      </div>
+
     </mat-list>
   </div>
   <div class="initiative-controls">
@@ -32,7 +39,8 @@
     <button mat-fab (click)="nextTurn()">
       <mat-icon>next_plan</mat-icon>
     </button>
-    <mat-label matTooltip="Damage calulcation adds damage or heals and disables setting the hp manually">DMG CALC</mat-label>
+    <mat-label matTooltip="Damage calulcation adds damage or heals and disables setting the hp manually">DMG CALC
+    </mat-label>
     <mat-slide-toggle [(ngModel)]="this.initiativeService.damageCalc"></mat-slide-toggle>
   </div>
 </div>

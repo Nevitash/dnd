@@ -22,4 +22,39 @@
   padding: 5px; /* Optional: add padding to make the border more visible */
 }
 
+.next-round-preview-container app-initiative-tracker-entry {
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.round-divider {
+  margin: 10px 0; /* Add some spacing around the divider */
+  border-top-style: double; /* Use a double line style */
+  border-top-color: var(--mat-sys-color-primary); /* Use a theme color or any color you like */
+  border-top-width: 3px; /* Make the divider thicker */
+  /* Optional: Add a gradient for a more dynamic look */
+  background: linear-gradient(to right, transparent, var(--mat-sys-color-primary), transparent);
+  height: 5px; // Adjust height as needed to make gradient visible
+  width: 100%;
+  z-index: 0;
+}
+
+.label-divider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0; /* Adjust as needed */
+}
+
+.centered-label {
+  position: absolute;
+  padding: 0 10px; /* Adjust for spacing around the text */
+  z-index: 1;
+  background-color: var(--mat-sys-color-primary-container);
+}
+
 

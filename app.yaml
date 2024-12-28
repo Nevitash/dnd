@@ -8,3 +8,4 @@ handlers:
   - url: /.*
     static_files: dist/dnd/browser/index.html  # Correct path
     upload: dist/dnd/browser/index.html
+
