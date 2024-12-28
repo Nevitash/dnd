@@ -22,7 +22,8 @@
             [ngClass]="{'greyed-out': this.phase === Phase.IN_ROUND}"
             [tracked]="entry()"
             [damageCalc]="this.initiativeService.damageCalc"
-            (click)="editEntry(entry)"></app-initiative-tracker-entry>
+            (click)="editEntry(entry)"
+            (removeEntryEvent)="removeEntry($event)"></app-initiative-tracker-entry>
 
         }
       </div>
