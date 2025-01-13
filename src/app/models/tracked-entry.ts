@@ -100,6 +100,9 @@ export class TrackedEntry {
   }
 
 
+  static updateEntryData(entry: TrackedEntry, updatedEntry: Partial<TrackedEntry>) {
+
+  }
 }
 
 

@@ -2,10 +2,10 @@
   <div class="initiative-order">
     <mat-list>
       @if (this.phase === Phase.IN_ROUND) {
-        @for (entry of this._roundEntries; let index = $index; track entry().id) {
+        @for (entry of this._roundEntries; let index = $index; track entry.id) {
           <app-initiative-tracker-entry
             [ngClass]="{'highlight-entry': index === 0}"
-            [tracked]="entry()"
+            [tracked]="entry"
             [damageCalc]="this.initiativeService.damageCalc"
             (click)="editEntry(entry)"
             (removeEntryEvent)="removeEntry($event)"
@@ -17,10 +17,10 @@
         </div>
       }
       <div [ngClass]="{'next-round-preview-container': this.phase !== Phase.PREVIEW}">
-        @for (entry of this._entries; let index = $index; track entry().id) {
+        @for (entry of this._entries; let index = $index; track entry.id) {
           <app-initiative-tracker-entry
             [ngClass]="{'greyed-out': this.phase === Phase.IN_ROUND}"
-            [tracked]="entry()"
+            [tracked]="entry"
             [damageCalc]="this.initiativeService.damageCalc"
             (click)="editEntry(entry)"
             (removeEntryEvent)="removeEntry($event)"></app-initiative-tracker-entry>

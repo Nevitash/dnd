@@ -15,8 +15,8 @@ import {Subscription} from 'rxjs';
 export class InitiativeTrackerComponent implements OnInit, OnDestroy {
   initiativeService = inject(InitiativeService);
 
-  _entries: Array<WritableSignal<TrackedEntry>> = [];
-  _roundEntries: Array<WritableSignal<TrackedEntry>> = [];
+  _entries: TrackedEntry[] = [];
+  _roundEntries: TrackedEntry[] = [];
 
   dialog = inject(MatDialog);
 
@@ -59,7 +59,7 @@ export class InitiativeTrackerComponent implements OnInit, OnDestroy {
     });
   }
 
-  editEntry(entry: WritableSignal<TrackedEntry>) {
+  editEntry(entry: TrackedEntry) {
 
   }
 

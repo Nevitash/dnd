@@ -1,26 +1,36 @@
-import {Injectable, signal, WritableSignal} from '@angular/core';
+import {Inject, inject, Injectable, signal, WritableSignal} from '@angular/core';
 import {Character} from '../models/character';
 import {TrackedEntry} from '../models/tracked-entry';
 import {Phase} from '../enums/phase';
 import {Observable, Subject} from 'rxjs';
+import {AppState, GLOBAL_STATE} from '../store/app.state';
+
+import {RxState} from '@rx-angular/state';
+import {PhaseActions} from '../store/actions/phase.action';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InitiativeService {
-  get entries(): Array<WritableSignal<TrackedEntry>> {
+  get entries(): TrackedEntry[] {
     return this._entries;
   }
 
-  private _entries: Array<WritableSignal<TrackedEntry>> = [];
-  private _roundEntries: Array<WritableSignal<TrackedEntry>> = [];
+
+  protected phaseActions: PhaseActions = inject(PhaseActions);
+  private _entries: TrackedEntry[] = [];
+  private _roundEntries: TrackedEntry[] = [];
   private _phase: Phase = Phase.PREVIEW;
   private _damageCalc: WritableSignal<boolean> = signal(false);
+  @Inject(GLOBAL_STATE) private globalState!: RxState<AppState>;
 
   _newRoundSubject = new Subject<void>();
   private _newRoundEvent$ = this._newRoundSubject.asObservable();
 
   constructor() {
+    // this.appStore.select(selectTrackedEntries).subscribe(entries => this._entries = entries);
+    // this.appStore.select(selectRoundTrackedEntries).subscribe(entries => this._roundEntries = entries);
+    // this.appStore.select(selectPhase).subscribe(phase => this._phase = phase);
   }
 
   clearTracker(): void {
@@ -37,18 +47,11 @@ export class InitiativeService {
   }
 
   addCharacter(character: Character): void {
-    this.addTrackedEntry(TrackedEntry.buildWithCharacter(character)!);
+    // this.appStore.dispatch(addTrackedEntry({trackedEntry: TrackedEntry.buildWithCharacter(character)!}));
   }
 
   addTrackedEntry(trackedEntry: TrackedEntry) {
-    const number: number = this.determineNextNumber(this._entries, trackedEntry.name);
-    trackedEntry.name = `${trackedEntry.name} ${number}`;
-    let newEntrySignal = signal(trackedEntry);
-    this._entries.push(newEntrySignal);
-    if (this.phase === Phase.PREVIEW) {
-      this._roundEntries.push(newEntrySignal)
-    }
-    this.sortEntries();
+    // this.appStore.dispatch(addTrackedEntry({trackedEntry}));
   }
 
   determineNextNumber(entries: Array<WritableSignal<TrackedEntry>>, name: string): number {
@@ -66,18 +69,18 @@ export class InitiativeService {
   }
 
   startNewRound() {
-    if(this._entries.length <= 1){
+    if (this._entries.length <= 1) {
       return;
     }
-    this.phase = Phase.IN_ROUND;
+    this.phaseActions.actions.toInRound({});
     this.sortEntries();
     this.roundEntries = [...this.entries];
     this._newRoundSubject.next();
   }
 
-  nextTurn(): WritableSignal<TrackedEntry> | null {
+  nextTurn(): TrackedEntry | null {
     //Start the round if we were in preview. Happens if we forgot to call startNewRound
-    if(this._entries.length <= 1){
+    if (this._entries.length <= 1) {
       return null;
     }
     if (this.phase === Phase.PREVIEW) {
@@ -95,28 +98,28 @@ export class InitiativeService {
     this._roundEntries.sort((a, b) => this.sortEntriesFunction(a, b))
   }
 
-  sortEntriesFunction(a: WritableSignal<TrackedEntry>, b: WritableSignal<TrackedEntry>): number {
-    if (a().stats.initiative > b().stats.initiative) {
+  sortEntriesFunction(a: TrackedEntry, b: TrackedEntry): number {
+    if (a.stats.initiative > b.stats.initiative) {
       return -1;
     }
-    if (a().stats.initiative < b().stats.initiative) {
+    if (a.stats.initiative < b.stats.initiative) {
       return 1;
     }
-    if (a().stats.initiative === b().stats.initiative && a().stats.initiativeMod > b().stats.initiativeMod) {
+    if (a.stats.initiative === b.stats.initiative && a.stats.initiativeMod > b.stats.initiativeMod) {
       return -1
     }
-    if (a().stats.initiative === b().stats.initiative && a().stats.initiativeMod < b().stats.initiativeMod) {
+    if (a.stats.initiative === b.stats.initiative && a.stats.initiativeMod < b.stats.initiativeMod) {
       return 1;
     }
     return 0;
   }
 
 
-  get roundEntries(): Array<WritableSignal<TrackedEntry>> {
+  get roundEntries(): TrackedEntry[] {
     return this._roundEntries;
   }
 
-  set roundEntries(value: Array<WritableSignal<TrackedEntry>>) {
+  set roundEntries(value: TrackedEntry[]) {
     this._roundEntries = value;
   }
 
@@ -137,13 +140,6 @@ export class InitiativeService {
   }
 
   removeEntryFromAll(trackedEntry: TrackedEntry) {
-    let index = this._entries.findIndex(entry => entry().name === trackedEntry.name);
-    if (index !== -1) {
-      this._entries.splice(index, 1);
-    }
-    index = this._roundEntries.findIndex(entry => entry().name === trackedEntry.name);
-    if (index !== -1) {
-      this._roundEntries.splice(index, 1);
-    }
+    // this.appStore.dispatch(removeTrackedEntry({trackedEntry: trackedEntry}));
   }
 }

@@ -23,8 +23,10 @@ import {
   MatExpansionPanelDescription,
   MatExpansionPanelTitle
 } from '@angular/material/expansion';
-import { AttributeWithModifierComponent } from './components/inputs/attribute-with-modifier/attribute-with-modifier.component';
-import { ImageUploadComponent } from './components/inputs/image-upload/image-upload.component';
+import {
+  AttributeWithModifierComponent
+} from './components/inputs/attribute-with-modifier/attribute-with-modifier.component';
+import {ImageUploadComponent} from './components/inputs/image-upload/image-upload.component';
 import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {NgOptimizedImage} from '@angular/common';
 import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
@@ -34,6 +36,10 @@ import {MatTooltip} from '@angular/material/tooltip';
 import {NgIconsModule} from '@ng-icons/core';
 import {gamePerspectiveDiceSixFacesSix} from '@ng-icons/game-icons'
 import {MatDivider} from "@angular/material/divider";
+import {GLOBAL_STATE} from './store/app.state';
+import {rxState} from '@rx-angular/state';
+import {AppState} from './store/app.state';
+import {PhaseEffects} from './store/effects/PhaseEffects';
 
 @NgModule({
   declarations: [
@@ -44,46 +50,52 @@ import {MatDivider} from "@angular/material/divider";
     AttributeWithModifierComponent,
     ImageUploadComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MatList,
-        MatIcon,
-        MatFabButton,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatFormField,
-        MatFormFieldModule,
-        MatInput,
-        BrowserAnimationsModule,
-        FormsModule,
-        MatDialogTitle,
-        MatDialogContent,
-        MatDialogContainer,
-        MatButton,
-        MatGridList,
-        MatGridTile,
-        MatListItem,
-        MatListItemTitle,
-        MatAccordion,
-        MatExpansionPanel,
-        MatExpansionPanelTitle,
-        MatExpansionPanelDescription,
-        MatExpansionModule,
-        MatCard,
-        MatCardImage,
-        MatCardContent,
-        NgOptimizedImage,
-        DragScrollComponent,
-        DragScrollItemDirective,
-        MatSlider,
-        MatSliderThumb,
-        MatSlideToggle,
-        MatTooltip,
-        NgIconsModule.withIcons({gamePerspectiveDiceSixFacesSix}),
-        MatDivider
-    ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatList,
+    MatIcon,
+    MatFabButton,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatFormFieldModule,
+    MatInput,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogContainer,
+    MatButton,
+    MatGridList,
+    MatGridTile,
+    MatListItem,
+    MatListItemTitle,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription,
+    MatExpansionModule,
+    MatCard,
+    MatCardImage,
+    MatCardContent,
+    NgOptimizedImage,
+    DragScrollComponent,
+    DragScrollItemDirective,
+    MatSlider,
+    MatSliderThumb,
+    MatSlideToggle,
+    MatTooltip,
+    NgIconsModule.withIcons({gamePerspectiveDiceSixFacesSix}),
+    MatDivider
+  ],
+  providers: [
+    {
+      provide: GLOBAL_STATE, useFactory: () => rxState<AppState>(),
+    },
+    PhaseEffects
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
