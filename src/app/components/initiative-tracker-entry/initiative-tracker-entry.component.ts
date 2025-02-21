@@ -1,16 +1,47 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  OnDestroy, ViewChild, ElementRef, Output, EventEmitter
-} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {TrackedEntry} from '../../models/tracked-entry';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelDescription,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle
+} from '@angular/material/expansion';
+import {NgClass, NgTemplateOutlet} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatSlider, MatSliderThumb} from '@angular/material/slider';
+import {FormsModule} from '@angular/forms';
+import {DragScrollComponent, DragScrollItemDirective} from 'ngx-drag-scroll';
+import {MatFabButton} from '@angular/material/button';
+import {MatInput} from '@angular/material/input';
+import {MatCardImage} from '@angular/material/card';
 
 @Component({
   selector: 'app-initiative-tracker-entry',
-  standalone: false,
+  standalone: true,
 
   templateUrl: './initiative-tracker-entry.component.html',
+  imports: [
+    MatAccordion,
+    MatExpansionPanel,
+    NgClass,
+    MatIcon,
+    MatExpansionPanelTitle,
+    MatLabel,
+    NgTemplateOutlet,
+    MatSlider,
+    FormsModule,
+    MatExpansionPanelDescription,
+    DragScrollComponent,
+    MatFormField,
+    MatFabButton,
+    MatInput,
+    MatSliderThumb,
+    DragScrollItemDirective,
+    MatCardImage,
+    MatExpansionPanelHeader
+  ],
   styleUrl: './initiative-tracker-entry.component.scss'
 })
 export class InitiativeTrackerEntryComponent implements OnInit, OnDestroy {

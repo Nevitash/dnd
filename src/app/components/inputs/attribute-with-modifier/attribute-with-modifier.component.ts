@@ -6,17 +6,30 @@ import {
   FormControl,
   FormGroup,
   NG_VALIDATORS,
-  NG_VALUE_ACCESSOR, ValidationErrors,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  ValidationErrors,
   Validators
 } from '@angular/forms';
 import {Attribute} from '../../../models/dto/attribute';
 import {RollUtil} from '../../../utils/rollUtil';
+import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {NgIcon, NgIconsModule} from '@ng-icons/core';
+import {MatInput} from '@angular/material/input';
 
 @Component({
   templateUrl: './attribute-with-modifier.component.html',
   selector: 'app-attribute-with-modifier',
   styleUrls: ['./attribute-with-modifier.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatLabel,
+    MatFormField,
+    NgIcon,
+    NgIconsModule,
+    MatInput
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

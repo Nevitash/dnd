@@ -1,19 +1,25 @@
-import {Component, forwardRef, inject, Input, input} from '@angular/core';
+import {Component, forwardRef, inject, Input} from '@angular/core';
 import {
   ControlValueAccessor,
   FormBuilder,
   FormControl,
   FormGroup,
   NG_VALUE_ACCESSOR,
-  Validators
+  ReactiveFormsModule,
 } from '@angular/forms';
+import {MatCard, MatCardContent} from '@angular/material/card';
 
 @Component({
   selector: 'app-image-upload',
-  standalone: false,
+  standalone: true,
 
   templateUrl: './image-upload.component.html',
   styleUrl: './image-upload.component.scss',
+  imports: [
+    ReactiveFormsModule,
+    MatCard,
+    MatCardContent
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

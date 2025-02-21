@@ -1,15 +1,40 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, WritableSignal} from '@angular/core';
 import {InitiativeService} from '../../services/initiative.service';
 import {TrackedEntry} from '../../models/tracked-entry';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {AddTrackedEntryComponent} from '../dialogs/add-tracked-entry/add-tracked-entry.component';
 import {Phase} from '../../enums/phase';
 import {Subscription} from 'rxjs';
+import {MatList} from '@angular/material/list';
+import {NgClass} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
+import {MatLabel} from '@angular/material/form-field';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
+import {FormsModule} from '@angular/forms';
+import {MatDivider} from '@angular/material/divider';
+import {InitiativeTrackerEntryComponent} from '../initiative-tracker-entry/initiative-tracker-entry.component';
+import {MatFabButton} from '@angular/material/button';
+import {NgIconsModule} from '@ng-icons/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-initiative-tracker',
-  standalone: false,
+  standalone: true,
   templateUrl: './initiative-tracker.component.html',
+  imports: [
+    MatList,
+    NgClass,
+    MatIcon,
+    MatLabel,
+    MatSlideToggle,
+    FormsModule,
+    MatDivider,
+    InitiativeTrackerEntryComponent,
+    MatFabButton,
+    MatDialogModule,
+    NgIconsModule,
+    BrowserAnimationsModule
+  ],
   styleUrl: './initiative-tracker.component.scss'
 })
 export class InitiativeTrackerComponent implements OnInit, OnDestroy {

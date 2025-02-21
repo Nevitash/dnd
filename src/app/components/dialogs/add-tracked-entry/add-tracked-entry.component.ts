@@ -1,17 +1,37 @@
-import {ChangeDetectorRef, Component, inject,} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {AddTrackedEntryFormService} from '../../../services/forms/add-tracked-entry-form.service';
-import {MatDialogRef} from '@angular/material/dialog';
+import {MatDialogContent, MatDialogRef, MatDialogTitle} from '@angular/material/dialog';
 import {TrackedEntry} from '../../../models/tracked-entry';
 import {Character} from '../../../models/character';
 import {Attribute} from '../../../models/dto/attribute';
 import {TrackedAttribute} from '../../../enums/tracked-attribute';
+import {AttributeWithModifierComponent} from '../../inputs/attribute-with-modifier/attribute-with-modifier.component';
+import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {ImageUploadComponent} from '../../inputs/image-upload/image-upload.component';
+import {MatIcon} from '@angular/material/icon';
+import {NgIconsModule} from '@ng-icons/core';
+import {MatInput} from '@angular/material/input';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-add-tracked-entry',
-  standalone: false,
+  standalone: true,
 
   templateUrl: './add-tracked-entry.component.html',
+  imports: [
+    ReactiveFormsModule,
+    AttributeWithModifierComponent,
+    MatLabel,
+    MatDialogContent,
+    MatFormField,
+    ImageUploadComponent,
+    MatIcon,
+    NgIconsModule,
+    MatInput,
+    MatButton,
+    MatDialogTitle
+  ],
   styleUrl: './add-tracked-entry.component.scss'
 })
 export class AddTrackedEntryComponent {
@@ -60,10 +80,6 @@ export class AddTrackedEntryComponent {
     }
     this.dialogRef.close(trackedEntries);
     this.formService.resetForm();
-  }
-
-  trackFunctionAttributes(attribute: FormControl<Attribute | null>) {
-    return attribute.value?.name ?? undefined;
   }
 
   isRollable(attribute: FormControl<Attribute | null>): boolean {
