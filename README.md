@@ -1,59 +1,56 @@
-# Dnd
+﻿# Dnd _(dnd)_
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-## Development server
+Angular-based tabletop RPG companion web application with combat initiative tracking.
 
-To start a local development server, run:
+Dnd provides a web interface tailored for game masters to manage tabletop encounters, track actor initiative, and streamline combat rounds.
 
-```bash
-ng serve
-```
+## Table of Contents
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [Maintainers](#maintainers)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Code scaffolding
+## Background
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Running pen-and-paper combat encounters requires quick tracking of turns, statuses, and player orders. This application provides a responsive Angular frontend leveraging Angular Material and reactive state management for real-time turn tracking during sessions.
 
-```bash
-ng generate component component-name
-```
+## Install
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Requires Node.js (v18+) and npm:
 
-```bash
-ng generate --help
-```
+`ash
+npm install
+`
 
-## Building
+## Usage
 
-To build the project run:
+Start the Angular local development server:
 
-```bash
-ng build
-```
+`ash
+npm start
+`
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Navigate to http://localhost:4200/ in your browser. The application will automatically reload if source files change.
 
-## Running unit tests
+To create a production build:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+`ash
+npm run build
+`
 
-```bash
-ng test
-```
+## Maintainers
 
-## Running end-to-end tests
+[@Nevitash](https://github.com/Nevitash)
 
-For end-to-end (e2e) testing, run:
+## Contributing
 
-```bash
-ng e2e
-```
+PRs accepted. Please open an issue first to discuss substantial feature additions or design changes.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## License
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[MIT](LICENSE)
