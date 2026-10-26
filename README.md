@@ -1,4 +1,4 @@
-﻿# Dnd _(dnd)_
+# Dnd _(dnd)_
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
@@ -23,25 +23,25 @@ Running pen-and-paper combat encounters requires quick tracking of turns, status
 
 Requires Node.js (v18+) and npm:
 
-`ash
+```bash
 npm install
-`
+```
 
 ## Usage
 
 Start the Angular local development server:
 
-`ash
+```bash
 npm start
-`
+```
 
 Navigate to http://localhost:4200/ in your browser. The application will automatically reload if source files change.
 
 To create a production build:
 
-`ash
+```bash
 npm run build
-`
+```
 
 ## Maintainers
 
